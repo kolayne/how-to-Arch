@@ -61,3 +61,85 @@ Next, create filesystems on the partitions you just created:
 mkfs.ext4 /dev/nvme0n1p5
 mkfs.ext4 /dev/nvme0n1p6
 ```
+
+## Mount filesystems
+
+Mount all filesystems you will need in your system (including the ones you
+created; including the EFI partition):
+```sh
+$ mount /dev/nvme0n1p5 /mnt
+$ mount --mkdir /dev/nvme0n1p6 /mnt/home
+$ mount --mkdir /dev/nvme0n1p1 /mnt/boot
+```
+
+## Install essential packages
+
+First, optionally, make sure that you are satisifed with the automatically generated mirror list
+and the pacman configuration (for instance, I like to set `ParallelDownloads = 4` in the config):
+```sh
+$ vim /etc/pacman.d/mirrorlist
+< view and change the mirror list >
+$ vim /etc/pacman.conf
+< view and change the configuration >
+```
+
+Next, initialize the pacman keyring in your new system & install the first set of packages:
+```sh
+$ pacstrap -K /mnt base linux linux-firmware git fish intel-ucode byobu man-db man-pages vim
+```
+
+## Create swapfile
+
+Create a swap file called `/swapfile`. If you want hibernation to be supported, the swap file shall
+be at least your RAM sizde.
+
+```sh
+$ fallocate -l 16G /mnt/swapfile
+$ chmod 600 /mnt/swapfile
+$ mkswap /mnt/swapfile
+$ swapon /mnt/swapfile  # Helpful for later /etc/fstab generation
+```
+
+## Generate `/etc/fstab`
+
+Generate the fstab file using UUID for partition identifiers (if the swap file is currently on,
+it will be added to the fstab as well).
+
+```sh
+$ genfstab -U /mnt > /mnt/etc/fstab
+```
+
+## Miscellaneous system configuration
+
+Chroot into your system:
+```sh
+$ arch-chroot /mnt
+```
+
+### Time & timezone
+
+Set your appropriate timeone (by replacing `Europe/Moscow`)
+
+```sh
+$ ln --symbolic /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+$ hwclock --systohc
+```
+
+### Localization
+
+1.  Edit `/etc/locale.gen` and uncomment locales that you need, e.g., `en_US *`, `en_GB *`, `ru_RU *`.
+2.  Run `locale-gen`
+3.  Edit `/etc/locale.conf` and set locale variables (one per line), e.g., `LANG=en_US.UTF-8`, `LC_TIME=en_GB.UTF-8`.
+
+### Hostname
+
+Set your hostname:
+```sh
+echo YOUR_HOSTNAME > /etc/hostname
+```
+
+### Set the root password
+
+```sh
+$ passwd
+```
