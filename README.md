@@ -255,3 +255,31 @@ $ yay -Syu dmenu alacritty
 ```
 
 Note: you may need to rebot before you will be able to start graphical interface.
+
+## Restore your configurations
+
+If you have any previous configurations for your software (especially, Xorg- or `i3`-related),
+you can restore them now. If you don't, you can either skip this step (and only configure things
+later, when you need something), or use someone else's configs as a starting point.
+
+To set up my configuration:
+```sh
+$ git clone https://github.com/kolayne/some_scripts_and_configs.git ssac
+< some output >
+$ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/
+$ cp -r ssac/dotconfig__bash/ ~/.config/bash
+$ echo "source ~/.config/bash/rc" > ~/.bashrc
+$ cp -r ssac/dotconfig__fish/ ~/.config/fish
+$ mkdir -p ~/.config/i3
+$ cp ssac/i3_config ~/.config/i3/config
+$ rm -rf ssac
+```
+
+**KEEP IN MIND** that my `i3` config contains a lot of autostart commands, which will be silently ignored
+if you don't have the corresponding software installed (we will install it in a further step).
+
+Now you can `reboot` and log in to a graphical environment. Press
+`Alt+Enter` (default i3 config) or `Super+Enter` (my i3 config) to launch a terminal emulator;
+press `Alt+d` (default i3 config) or `Alt+F2` (my i3 config) to lanuch another application.
+
+Configure the rest to your liking by editing `~/.config/i3/config`!
