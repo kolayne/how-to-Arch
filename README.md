@@ -39,6 +39,13 @@ $
 
 ### Create partitions with `parted`
 
+<details>
+  <summary>TODO</summary>
+
+  Rewrite this section and suggest using `fdisk` instead of `parted`
+
+</details>
+
 First, run `parted` on your disk (e.g., `parted /dev/nvme0n1`), and
 create the deisred partition layout.
 
@@ -49,7 +56,9 @@ Useful commands of `parted`:
 -   `mkpart` to interactively create a partition
 
 My layout during the last installation (in order):
--   EFI partition created by Windows 11
+-   EFI partition created by Windows 11 (during the installation it's better to
+    intervene and make it 200MB+. Alternatively, after the installation it is
+    possible to resize the C: partition and give some space to the EFI partition)
 -   A few Windows partitions with C: of size 107GiB
 -   An ext4 `/` partition of size 149GiB
 -   An ext4 `/home` partition of size 220GiB
@@ -85,8 +94,11 @@ $ vim /etc/pacman.conf
 
 Next, initialize the pacman keyring in your new system & install the first set of packages:
 ```sh
-$ pacstrap -K /mnt base linux linux-firmware git fish intel-ucode byobu man-db man-pages vim
+$ pacstrap -K /mnt base linux linux-firmware intel-ucode sudo git fish byobu man-db man-pages vim networkmanager
 ```
+
+Keep in mind that your changes to `/etc/pacman.conf` in the live mode aren't automatically
+transferred in your new system's `/etc/pacman.conf`, so you'll need to update it manually.
 
 ## Create swapfile
 
@@ -142,4 +154,17 @@ echo YOUR_HOSTNAME > /etc/hostname
 
 ```sh
 $ passwd
+```
+
+## Bootloader
+
+While still inside the chroot, install the `systemd-boot` bootloader. It is a part of already installed
+`systemd` package, so, you will just need to configure it.
+
+```sh
+$ bootctl install
+< some output >
+$ vim /boot/loader/entries/arch.conf
+< edit the file according to https://wiki.archlinux.org/title/systemd-boot#Configuration >
+$
 ```
