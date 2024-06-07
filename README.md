@@ -9,6 +9,8 @@ Follow the steps below to end up with a usable desktop edition of Arch Linux sim
 Don't follow them blindly, though: this tutorial aggressively targets my personal preferences, which may not match yours
 (such as having four different web browsers installed at the same time).
 
+# Part 1, live mode
+
 ## Make a liveUSB and boot it
 
 Download an .iso file from https://archlinux.org/download/ and flush it to a flash drive in your favourite way, e.g.,
@@ -94,7 +96,7 @@ $ vim /etc/pacman.conf
 
 Next, initialize the pacman keyring in your new system & install the first set of packages:
 ```sh
-$ pacstrap -K /mnt base linux linux-firmware intel-ucode sudo git fish byobu man-db man-pages vim networkmanager
+$ pacstrap -K /mnt base linux linux-firmware intel-ucode networkmanager sudo git fish byobu man-db man-pages vim which
 ```
 
 Keep in mind that your changes to `/etc/pacman.conf` in the live mode aren't automatically
@@ -154,6 +156,7 @@ echo YOUR_HOSTNAME > /etc/hostname
 
 ```sh
 $ passwd
+< set root password >
 ```
 
 ## Bootloader
@@ -166,5 +169,89 @@ $ bootctl install
 < some output >
 $ vim /boot/loader/entries/arch.conf
 < edit the file according to https://wiki.archlinux.org/title/systemd-boot#Configuration >
-$
 ```
+
+# Part 2, in your system!
+
+Now that you've followed the steps above and installed a bootloader, you should be able to boot into
+your new system by exiting the chroot (`exit`) and running `reboot`. 
+
+Once the system boots, log in as `root` with your root password you set earlier. The installation
+continues from there.
+
+## Set up a network
+
+Enable `NetworkManager.service` and connect to a network
+```sh
+$ systemctl enable --now NetworkManager.service
+< some output >
+$ nmcli dev wifi list
+< wifi networks list >
+$ nmcli dev wifi connect <SSID> password <password>
+< indication of success >
+```
+
+## Set up pacman mirrors
+
+```sh
+$ pacman -Syu reflector
+< proceed with the installation >
+$ reflector --sort score --country ru --protocol https,ftp,rsync --fastest 10 > /tmp/reflector-gen
+< warnings that some mirrors are inaccessible >
+$ mv /tmp/reflector-gen /etc/pacman.d/mirrrorlist
+```
+
+## Create a regular user
+
+Run the following code, replacing `$NUSER` with your username
+```sh
+$ useradd --shell $(which fish) $NUSER  # Creates a new user with `fish` as the default shell
+$ mkdir /home/$NUSER
+$ chown $NUSER:$NUSER /home/$NUSER
+$ passwd $NUSER
+< set password for your user >
+$ VISUAL=vim visudo
+< edit the sudoers file: uncomment the line that starts with `%sudo` >
+$ groupadd sudo
+$ usermod -aG sudo $NUSER
+```
+
+Now you can `exit` the shell and log in as your new user (it is required for further steps).
+
+Though, if you're too lazy to type your username and password, you can as well run
+`exec sudo -u $NUSER -i`
+
+## Install an AUR helper
+
+To install `yay`, do:
+```sh
+$ sudo pacman -Syu base-devel
+< enter your password and proceed with the installation >
+$ cd /tmp
+$ git clone https://aur.archlinux.org/yay.git
+< some output >
+$ cd yay
+$ makepkg -s -i
+< proceed with the installation >
+```
+
+## Set up a graphical environment
+
+Install the `i3` window manager and the `emptty` display manager:
+```sh
+$ yay -Syu i3 emptty
+< study the PKGBUILD to make sure it's not mallicious (and always do this in the future when installing AUR packages) >
+< select all packages from the i3 group >
+< select the noto-fonts provider for the fonts >
+$ sudo systemctl enable emptty
+< indication of success >
+```
+
+Install most crucial things that you will need in a graphical environment, such as `dmenu` to start applications
+and the `alacritty` terminal emulator.
+```sh
+$ yay -Syu dmenu alacritty
+< proceed with installation >
+```
+
+Note: you may need to rebot before you will be able to start graphical interface.
