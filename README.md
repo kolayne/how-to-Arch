@@ -269,12 +269,32 @@ To set up my configuration:
 ```sh
 $ git clone https://github.com/kolayne/some_scripts_and_configs.git ssac
 < some output >
-$ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/  # Configures keyboard layout and touchpad
+$ # Configures keyboard layout and touchpad behavior
+$ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/
+$
+$ # Bash config
 $ cp -r ssac/dotconfig__bash/ ~/.config/bash
 $ echo "source ~/.config/bash/rc" > ~/.bashrc
+$
+$ # Fish config
 $ cp -r ssac/dotconfig__fish/ ~/.config/fish
-$ mkdir -p ~/.config/i3
+$
+$ # Install `pdeath_hup`
+$ mkdir -p ~/.local/bin/
+$ gcc ssac/pdeath_hup.c -o ~/.local/bin/pdeath_hup
+$
+# # i3 config
+$ mkdir -p ~/.config/i3/
 $ cp ssac/i3_config ~/.config/i3/config
+$
+$ # Vim config
+$ cp ssac/.vimrc ~/.vimrc
+$
+$ # Polybar config
+$ mkdir -p ~/.config/polybar/
+$ cp ssac/polybar_config.ini ~/.config/polybar/config.ini
+$
+$ # That's it :)
 $ rm -rf ssac
 ```
 
@@ -300,7 +320,8 @@ Install other packages and apps that you will use. My suggestion:
       `paprefs` for some advanced pulseaudio settings <br>
       (pulseaudio may require a reboot to start working)
     - `picom` (a [compositor](https://wiki.archlinux.org/title/Xorg#Composite))
-      for windows transparency support and vertical synchronization (vsync)
+      for windows transparency support and vertical synchronization (vsync) <br>
+      (configuration required, see next section)
     - `clipster` (a [clipboard manager](https://wiki.archlinux.org/title/Clipboard#Managers)) for better
       clipboard support (clipboard content preservation after an app is closed)
     - `ruby-fusuma` for touchpad gestures support, <br>
@@ -308,13 +329,14 @@ Install other packages and apps that you will use. My suggestion:
       (configuration required, see next section)
     - `playerctl` - cli for media control (play/pause, next/prev, etc) <br>
       (keyboard integration can be configured, see next section)
-    - `feh` for wallpapers support
+    - `feh` for wallpapers support <br>
+      (configuration required, see next section)
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
     - `c-lolcat` for the `lolcat` command (aliased to `cat` in my bash/fish configs)
     - `light` to control backlight <br>
-      (keyboard integration can be configured, see next section)
+      (configuration required, see next section)
     - `htop` - console system monitor
     - `helix` - console text editor
     - `ffmpeg` - video editing utility
@@ -328,7 +350,8 @@ Install other packages and apps that you will use. My suggestion:
     - `polybar` configurable status panel <br>
       (configuration required, see next section)
     - `cbatticon` low-battery notification sender
-    - `redshift` screen color temperature adjusting tool (for night light)
+    - `redshift` screen color temperature adjusting tool (for night light) <br>
+      (configuration suggested, see next section)
     - `xss-lock` screen saver (screen lock launcher) <br>
       `i3lock-color` screen lock app
     - `terminator` terminal emulator
@@ -339,6 +362,7 @@ Install other packages and apps that you will use. My suggestion:
     - `eog` image viewer
     - `mpv` media player <br>
       `mpv-mpris` to enable MPRIS support for mpv <br>
+      `yt-dlp` to enable YouTube support for mpv <br>
       (configuration suggested, see next section)
     - `firefox chromium google-chrome epiphany` web browsers
     - `thunderbird` - Mozilla Thunderbird mail client <br>
@@ -378,10 +402,185 @@ $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavuc
 < confirm that `i3lock` needs to be uninstalled for `i3lock-color` to be installed >
 ```
 
-Note: some of the above apps need to run in the background, so they should be started at some point.
-If you're using my `i3` config (and have `pdeath_hup` installed, see next section), all the required
-apps will be started on log in. Otherwise you need to configure your system to start them.
-
 ## Configure your system
 
-Todo...
+### Background helpers
+
+Out of applications that you installed above, some (e.g., clipboard manager, polybar, etc) need to be
+running in the background. `pulseaudio` will be automatically launched by `systemd`; `dunst` will be
+launched on demand whenever a notification is sent; the rest need to be started at some point.
+
+If you are using my `i3` config, all the relevant applications are already there and will be started on
+log in and terminated on log out (xorg-dependent applications get notified when the graphical session
+is over, so they can terminate; the rest, such as fusuma, are sent a SIGHUP signal on `i3` termination
+because they are started through `pdeath_hup`).
+
+If you are using a different setup, you need to configure your system to launch whatever you want to be
+autostarted.
+
+### Systemd: sleep, logind
+
+Edit `/etc/systemd/sleep.conf` such that it has the following entries:
+```
+[Sleep]
+AllowSuspend=yes
+AllowHibernation=yes
+AllowSuspendThenHibernate=yes
+#...
+```
+
+Edit `/etc/systemd/logind.conf` such that it contains the following entries:
+```
+[Login]
+#...
+HandleSuspendKey=suspend
+#...
+HandleLidSwitch=suspend-then-hibernate
+HandleLidSwitchExternalPower=suspend-then-hibernate
+HandleLidSwitchDocked=ignore
+#...
+IdleAction=suspend-then-hibernate
+IdleActionSec=30min
+#...
+```
+
+### User dirs
+
+Edit the file `~/.config/user-dirs.dirs` and change `$HOME/Documents` to `$HOME/Docs` (the latter is
+easier to type in the terminal).
+
+### picom
+
+Create or edit `~/.config/picom.conf`:
+```
+vsync = true;
+fading = false;
+```
+
+### fusuma
+
+Add all users that need to run `fusuma` to the `input` group:
+```sh
+$ sudo usermod -aG input $USER
+```
+
+Create `~/.config/fusuma/config.yml` and put the following:
+```
+swipe:
+  3:
+    down:
+      command: "xdotool key ctrl+Tab"
+    up:
+      command: "xdotool key ctrl+Shift+Tab"
+
+  4:
+    left:
+      command: "i3 focus left"
+    right:
+      command: "i3 focus right"
+
+interval:
+  swipe: 0.6
+```
+
+### Media keys - `i3` + `playerctl`
+
+Add the following line to your `i3` config (it is already there if you used mine) to
+support the keyboard play/pause media key, as well as play/pause buttons on bluetooth devices:
+```sh
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+```
+
+You can find XF86* keys names and add similar lines for other `playerctl` commands: `stop`,
+`next`, `previous`, etc.
+
+### Wallpapers - `feh`
+
+Run the following commands and paste the following files:
+```sh
+$ systemctl --user edit switch_wallpaper.service --full --force
+[Unit]
+Description=Set a random wallpaper from a directory (hardcoded in the service file), using `feh`
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/env DISPLAY=:0 /usr/bin/feh --randomize --bg-max /home/nikolay/Images/bleach_wallpapers
+
+[Install]
+WantedBy=default.target
+
+$ systemctl --user edit switch_wallpaper.timer --full --force
+[Unit]
+Description=Change background after timeout (uses set_random_wallpaper.service)
+
+[Timer]
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target
+```
+
+Next, run:
+```sh
+$ systemctl --user enable switch_wallpaper.timer
+```
+
+It is suggested that you do not `enable` the service, as, when `systemd --user` starts, the system
+may not yet be ready for the wallpaper to be set. Instead, you can start `switch_wallpaper.service`
+from i3's config (this is the behavior of my config).
+
+### Backlight control - `light`
+
+Add all users that need to run `light` to the `video` group:
+```sh
+$ sudo usermod -aG video $USER
+```
+
+To additionally support brightness control keys on your keyboard, add the following lines to your
+`i3` config (they are already there if you used mine):
+```
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+```
+
+### Automatic trash clean up - `autotrash`
+
+To automatically clean files older than 30 days, run:
+```sh
+$ autotrash -d 30 --install
+< some output >
+```
+
+### Status panel - `polybar`
+
+Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/polybar_config.ini
+or use another sample config to start from.
+
+### Night light - `redshift`
+
+Create `~/.config/redshift.conf` and paste the following, replacing with your dawn and dusk time
+(or use other options, such as geolocation, see the manual for redshift):
+```
+[redshift]
+dawn-time=3:00-5:00
+dusk-time=19:30-21:00
+```
+
+### Media player - `mpv`
+
+Create `~/.config/mpv/mpv.conf` and paste the following:
+```
+# Youtube Support
+script-opts=ytdl_hook-ytdl_path=/usr/bin/yt-dlp
+ytdl-format=bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best
+
+--save-position-on-quit
+--script=/usr/lib/mpv-mpris/mpris.so
+```
+
+### Timeshift
+
+To configure `timeshift`, just launch it:
+```
+subo timeshift-gtk
+```
