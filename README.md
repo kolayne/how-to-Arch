@@ -286,3 +286,102 @@ Now you can `reboot` and log in to a graphical environment. Press
 press `Alt+d` (default i3 config) or `Alt+F2` (my i3 config) to lanuch another application.
 
 Configure the rest to your liking by editing `~/.config/i3/config`!
+
+## Install more packages that you will need
+
+Install other packages and apps that you will use. My suggestion:
+
+-   System functionality packages
+    - `noto-fonts{,-extra,-cjk,-emoji}` for extended font support
+    - `ntfs-3g` for the NTFS filesystem support
+    - `pulseaudio` for sound support, <br>
+      `pulseaudio-bluetooth` for bluetooth devices support, <br>
+      `pavucontrol` - GUI for pulseaudio settings, <br>
+      `paprefs` for some advanced pulseaudio settings <br>
+      (pulseaudio may require a reboot to start working)
+    - `picom` (a [compositor](https://wiki.archlinux.org/title/Xorg#Composite))
+      for windows transparency support and vertical synchronization (vsync)
+    - `clipster` (a [clipboard manager](https://wiki.archlinux.org/title/Clipboard#Managers)) for better
+      clipboard support (clipboard content preservation after an app is closed)
+    - `ruby-fusuma` for touchpad gestures support, <br>
+      `xdotool` for keyboard/mouse input emulation (will be useful with fusuma) <br>
+      (configuration required, see next section)
+    - `playerctl` - cli for media control (play/pause, next/prev, etc) <br>
+      (keyboard integration can be configured, see next section)
+    - `feh` for wallpapers support
+
+-   Command-line tools
+    - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
+    - `c-lolcat` for the `lolcat` command (aliased to `cat` in my bash/fish configs)
+    - `light` to control backlight <br>
+      (keyboard integration can be configured, see next section)
+    - `htop` - console system monitor
+    - `helix` - console text editor
+    - `ffmpeg` - video editing utility
+    - `rclone` - tool to mount remote clouds (such as Google Drive) into your system
+    - `trash-cli` for the `trash` command (move files/directories to trash)
+    - `autotrash` for purging old files from trash <br>
+      (configuration required, see next section)
+
+-   Graphical apps
+    - `dmenu` app launcher
+    - `polybar` configurable status panel <br>
+      (configuration required, see next section)
+    - `cbatticon` low-battery notification sender
+    - `redshift` screen color temperature adjusting tool (for night light)
+    - `xss-lock` screen saver (screen lock launcher) <br>
+      `i3lock-color` screen lock app
+    - `terminator` terminal emulator
+    - `pcmanfm` file manager
+    - `gnome-system-monitor` system monitor / task manager
+    - `gnome-calculator` calculator
+    - `gedit` text editor
+    - `eog` image viewer
+    - `mpv` media player <br>
+      `mpv-mpris` to enable MPRIS support for mpv <br>
+      (configuration suggested, see next section)
+    - `firefox chromium google-chrome epiphany` web browsers
+    - `thunderbird` - Mozilla Thunderbird mail client <br>
+      `birdtray` - additional tool to hide Thunderbird's window without closing it
+    - `obs-studio` screen recording and streaming software
+    - `wps-office` office software
+    - `telegram-desktop` messenger
+    - `jetbrains-toolbox` JetBrains IDEs installation manager (not integrated with pacman)
+    - `timeshift` system backup and restore utility <br>
+      (configuration required, see next section)
+
+-   Drivers
+    - `nvidia` for nvidia drivers <br>
+      `nvidia-prime` for the `prime-run` utility to launch apps with access to the GPU
+    - `xpadneo-dkms` for Xbox controller vibration support
+
+-   Daemons
+    - `docker` - Docker daemon <br>
+      `docker-buildx` - Docker BuildX plugin
+
+To install all of the above, run:
+```sh
+$ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
+      picom clipster ruby-fusuma xdotool playerctl feh \
+        \
+      openssh c-lolcat light htop helix ffmpeg rclone trash-cli autotrash \
+        \
+      dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
+      gnome-{system-monitor,calculator} gedit eog mpv{,-mpris} firefox chromium google-chrome epiphany \
+      thunderbird birdtray obs-studio wps-office telegram-desktop jetbrains-toolbox timeshift \
+        \
+      nvidia{,-prime} xpadneo-dkms \
+        \
+      docker{,-buildx} \
+    --needed
+< study PKGBUILDs to make sure they are not mallicious; proceed with the installation >
+< confirm that `i3lock` needs to be uninstalled for `i3lock-color` to be installed >
+```
+
+Note: some of the above apps need to run in the background, so they should be started at some point.
+If you're using my `i3` config (and have `pdeath_hup` installed, see next section), all the required
+apps will be started on log in. Otherwise you need to configure your system to start them.
+
+## Configure your system
+
+Todo...
