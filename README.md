@@ -344,6 +344,7 @@ Install other packages and apps that you will use. My suggestion:
     - `trash-cli` for the `trash` command (move files/directories to trash)
     - `autotrash` for purging old files from trash <br>
       (configuration required, see next section)
+    - `moreutils` many useful tools
 
 -   Graphical apps
     - `dmenu` app launcher
@@ -388,7 +389,7 @@ To install all of the above, run:
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
       picom clipster ruby-fusuma xdotool playerctl feh \
         \
-      openssh c-lolcat light htop helix ffmpeg rclone trash-cli autotrash \
+      openssh c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
       gnome-{system-monitor,calculator} gedit eog mpv{,-mpris} firefox chromium google-chrome epiphany \
@@ -584,3 +585,15 @@ To configure `timeshift`, just launch it:
 ```
 subo timeshift-gtk
 ```
+
+## Non-packaged utils
+
+There are a few more utils that I use, which are not properly packaged (yet?). To install them,
+follow the README instructions.
+
+-   Install [linux-cpu-scaling-helper](https://github.com/kolayne/linux-cpu-scaling-helper)
+
+-   Install [docker-on-top](https://github.com/kolayne/docker-on-top)
+
+-   Clone [Rimokon](https://github.com/kolayne/Rimokon) to `~/Docs/Rimokon` and configure it
+    (with my `i3` config it will be started on log in automatically)
