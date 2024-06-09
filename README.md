@@ -250,6 +250,18 @@ $ sudo systemctl enable emptty
 < indication of success >
 ```
 
+Create `~/.config/emptty` and make it executable (`chmod +x`). This file will be sourced by `emptty`
+before launching your window manager. Paste the following content:
+```sh
+#!/bin/sh
+Selection=true  # `emptty` will offer the window manager selection
+
+# Perform your setup here
+export PATH=$HOME/.local/bin:$PATH
+
+exec dbus-launch "$@"  # Launch the selected window manager
+```
+
 Install most crucial things that you will need in a graphical environment, such as `dmenu` to start applications
 and the `terminator` terminal emulator.
 ```sh
