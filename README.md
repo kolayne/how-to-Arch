@@ -248,9 +248,9 @@ $ sudo systemctl enable emptty
 ```
 
 Install most crucial things that you will need in a graphical environment, such as `dmenu` to start applications
-and the `alacritty` terminal emulator.
+and the `terminator` terminal emulator.
 ```sh
-$ yay -Syu dmenu alacritty
+$ yay -Syu dmenu terminator
 < proceed with installation >
 ```
 
@@ -266,7 +266,7 @@ To set up my configuration:
 ```sh
 $ git clone https://github.com/kolayne/some_scripts_and_configs.git ssac
 < some output >
-$ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/
+$ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/  # Configures keyboard layout and touchpad
 $ cp -r ssac/dotconfig__bash/ ~/.config/bash
 $ echo "source ~/.config/bash/rc" > ~/.bashrc
 $ cp -r ssac/dotconfig__fish/ ~/.config/fish
