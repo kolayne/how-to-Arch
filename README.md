@@ -96,7 +96,7 @@ $ vim /etc/pacman.conf
 
 Next, initialize the pacman keyring in your new system & install the first set of packages:
 ```sh
-$ pacstrap -K /mnt base linux linux-firmware intel-ucode networkmanager sudo git fish byobu man-db man-pages vim which
+$ pacstrap -K /mnt base linux{,-firmware,-headers} intel-ucode networkmanager sudo git fish byobu man-db man-pages vim which
 ```
 
 Keep in mind that your changes to `/etc/pacman.conf` in the live mode aren't automatically
@@ -223,7 +223,10 @@ Though, if you're too lazy to type your username and password, you can as well r
 
 ## Install an AUR helper
 
-To install `yay`, do:
+First, edit `/etc/makepkg.conf`: find the line that declares the `OPTIONS=(...)` array and,
+if it contains `debug`, replace it with `!debug`.
+
+Next, to install `yay`, do:
 ```sh
 $ sudo pacman -Syu base-devel
 < enter your password and proceed with the installation >
