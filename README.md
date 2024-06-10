@@ -3,7 +3,7 @@
 My **Arch Linux desktop installation** cheat sheet.
 
 This tutorial is based on the official [Arch Linux installation guide](https://wiki.archlinux.org/title/installation_guide)
-and [General recommendations](https://wiki.archlinux.org/title/General_recommendations).
+and other ArchWiki pages.
 
 Follow the steps below to end up with a usable desktop edition of Arch Linux similar to the one I am running on my laptop.
 Don't follow them blindly, though: this tutorial aggressively targets my personal preferences, which may not match yours
@@ -433,32 +433,6 @@ because they are started through `pdeath_hup`).
 If you are using a different setup, you need to configure your system to launch whatever you want to be
 autostarted.
 
-### Systemd: sleep, logind
-
-Edit `/etc/systemd/sleep.conf` such that it has the following entries:
-```
-[Sleep]
-AllowSuspend=yes
-AllowHibernation=yes
-AllowSuspendThenHibernate=yes
-#...
-```
-
-Edit `/etc/systemd/logind.conf` such that it contains the following entries:
-```
-[Login]
-#...
-HandleSuspendKey=suspend
-#...
-HandleLidSwitch=suspend-then-hibernate
-HandleLidSwitchExternalPower=suspend-then-hibernate
-HandleLidSwitchDocked=ignore
-#...
-IdleAction=suspend-then-hibernate
-IdleActionSec=30min
-#...
-```
-
 ### User dirs
 
 Edit the file `~/.config/user-dirs.dirs` and change `$HOME/Documents` to `$HOME/Docs` (the latter is
@@ -599,6 +573,49 @@ To configure `timeshift`, just launch it:
 ```
 subo timeshift-gtk
 ```
+
+## Configure idleness, suspension, hibernation
+
+Edit `/etc/systemd/sleep.conf` such that it has the following entries:
+```
+[Sleep]
+AllowSuspend=yes
+AllowHibernation=yes
+AllowSuspendThenHibernate=yes
+#...
+```
+
+Edit `/etc/systemd/logind.conf` such that it contains the following entries:
+```
+[Login]
+#...
+HandleSuspendKey=suspend
+#...
+HandleLidSwitch=suspend-then-hibernate
+HandleLidSwitchExternalPower=suspend-then-hibernate
+HandleLidSwitchDocked=ignore
+#...
+IdleAction=suspend-then-hibernate
+IdleActionSec=30min
+#...
+```
+
+Edit `/etc/mkinitcpio.conf` by adding the `resume` option to the `HOOKS=(...)` array, such that
+`resume` is after `udev`, to allow resume from hibernation. For example:
+```
+HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems resume fsck)
+```
+And rebuild the cpio image:
+```sh
+$ mkinitcpio -P
+```
+
+On a modern system (systemd >= 255, mkinitcpio >= 38, UEFI system) this should be sufficient:
+systemd will utilize the `HibernateLocation` EFI variable to keep the location of the hibernated
+image.
+
+Otherwise (if you end up with system hibernating but then booting normally rather than resuming), refer to
+[ArchWiki:Hibernation](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation)
 
 ## Non-packaged utils
 
