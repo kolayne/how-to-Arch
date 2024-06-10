@@ -258,6 +258,7 @@ Selection=true  # `emptty` will offer the window manager selection
 
 # Perform your setup here
 export PATH=$HOME/.local/bin:$PATH
+export LC_TIME=en_GB.UTF-8
 
 exec dbus-launch "$@"  # Launch the selected window manager
 ```
@@ -371,6 +372,7 @@ Install other packages and apps that you will use. My suggestion:
     - `pcmanfm` file manager
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
+    - `flameshot` to make screenshots
     - `gedit` text editor
     - `eog` image viewer
     - `mpv` media player <br>
@@ -404,8 +406,8 @@ $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavuc
       openssh c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
-      gnome-{system-monitor,calculator} gedit eog mpv{,-mpris} firefox chromium google-chrome epiphany \
-      thunderbird birdtray obs-studio wps-office telegram-desktop jetbrains-toolbox timeshift \
+      gnome-{system-monitor,calculator} flameshot gedit eog mpv{,-mpris} firefox chromium google-chrome \
+      epiphany thunderbird birdtray obs-studio wps-office telegram-desktop jetbrains-toolbox timeshift \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
