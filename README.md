@@ -344,6 +344,7 @@ Install other packages and apps that you will use. My suggestion:
       (keyboard integration can be configured, see next section)
     - `feh` for wallpapers support <br>
       (configuration required, see next section)
+    - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config.
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
@@ -401,7 +402,7 @@ Install other packages and apps that you will use. My suggestion:
 To install all of the above, run:
 ```sh
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
-      picom clipster ruby-fusuma xdotool playerctl feh \
+      picom clipster ruby-fusuma xdotool playerctl feh yaru-sound-theme \
         \
       openssh c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
         \
