@@ -348,6 +348,7 @@ Install other packages and apps that you will use. My suggestion:
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
+    - `lsd` - `ls` on steroids
     - `c-lolcat` for the `lolcat` command (aliased to `cat` in my bash/fish configs)
     - `light` to control backlight <br>
       (configuration required, see next section)
@@ -404,7 +405,7 @@ To install all of the above, run:
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
       picom clipster ruby-fusuma xdotool playerctl feh yaru-sound-theme \
         \
-      openssh c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
+      openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
       gnome-{system-monitor,calculator} flameshot gedit eog mpv{,-mpris} firefox chromium google-chrome \
