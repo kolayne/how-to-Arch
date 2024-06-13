@@ -363,6 +363,7 @@ Install other packages and apps that you will use. My suggestion:
     - `autotrash` for purging old files from trash <br>
       (configuration required, see next section)
     - `moreutils` many useful tools
+    - `tldr` - like `man` but `tldr`
 
 -   Graphical apps
     - `dmenu` app launcher
@@ -408,7 +409,7 @@ To install all of the above, run:
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
       picom clipster ruby-fusuma xdotool playerctl feh yaru-sound-theme numlockx \
         \
-      openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
+      openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
       gnome-{system-monitor,calculator} flameshot gedit eog mpv{,-mpris} firefox chromium google-chrome \
