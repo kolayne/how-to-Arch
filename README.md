@@ -259,6 +259,7 @@ Selection=true  # `emptty` will offer the window manager selection
 # Perform your setup here
 export PATH=$HOME/.local/bin:$PATH
 export LC_TIME=en_GB.UTF-8
+numlockx on  # Turns numlock on (requires the `numlockx` package)
 
 exec dbus-launch "$@"  # Launch the selected window manager
 ```
@@ -344,7 +345,9 @@ Install other packages and apps that you will use. My suggestion:
       (keyboard integration can be configured, see next section)
     - `feh` for wallpapers support <br>
       (configuration required, see next section)
-    - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config.
+    - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config
+    - `numlockx` to enable numlock automatically (must be configured in your login manager.
+      Already enabled in the `emptty` config used above, executed after logging in)
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
@@ -403,7 +406,7 @@ Install other packages and apps that you will use. My suggestion:
 To install all of the above, run:
 ```sh
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
-      picom clipster ruby-fusuma xdotool playerctl feh yaru-sound-theme \
+      picom clipster ruby-fusuma xdotool playerctl feh yaru-sound-theme numlockx \
         \
       openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils \
         \
