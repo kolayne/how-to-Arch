@@ -201,6 +201,13 @@ $ reflector --sort score --country ru --protocol https,ftp,rsync --fastest 10 > 
 $ mv /tmp/reflector-gen /etc/pacman.d/mirrrorlist
 ```
 
+## Disable `faillock`
+
+[pam_faillock](https://www.man7.org/linux/man-pages/man8/pam_faillock.8.html) is a pam module that
+records failed login attempts and locks users after several authenticatino failures in a row
+(by default), except for the `root` user (by default). The simplest way to disable it is to set
+the unlocking timeout to 1 second: edit `/etc/security/faillock.conf` and set `unlock_time = 1`.
+
 ## Create a regular user
 
 Run the following code, replacing `$NUSER` with your username
