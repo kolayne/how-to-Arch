@@ -345,6 +345,8 @@ Install other packages and apps that you will use. My suggestion:
       (configuration required, see next section)
     - `clipster` (a [clipboard manager](https://wiki.archlinux.org/title/Clipboard#Managers)) for better
       clipboard support (clipboard content preservation after an app is closed)
+    - `gvfs` for your file manager to support the `trash:///` location (and some other virtual
+      filesystems)
     - `ruby-fusuma` for touchpad gestures support, <br>
       `xdotool` for keyboard/mouse input emulation (will be useful with fusuma) <br>
       (configuration required, see next section)
@@ -414,7 +416,7 @@ Install other packages and apps that you will use. My suggestion:
 To install all of the above, run:
 ```sh
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
-      picom clipster ruby-fusuma xdotool playerctl feh yaru-sound-theme numlockx \
+      picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme numlockx \
         \
       openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
         \
