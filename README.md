@@ -584,9 +584,13 @@ ytdl-format=bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best
 
 ### Timeshift
 
-To configure `timeshift`, just launch it:
-```
-subo timeshift-gtk
+To configure `timeshift`, you need to first enable `cronie` (it is automatically installed
+as a dependency and needed for snapshot scheduling), and then just launch timeshift and configure
+everything you want, including the snapshots schedule, if you want them.
+```sh
+$ sudo systemctl enable --now cronie.service
+< success indication >
+$ subo timeshift-gtk
 ```
 
 ## Configure idleness, suspension, hibernation
