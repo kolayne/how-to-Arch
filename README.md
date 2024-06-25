@@ -526,12 +526,14 @@ WantedBy=timers.target
 
 Next, run:
 ```sh
-$ systemctl --user enable switch_wallpaper.timer
+$ systemctl --user start switch_wallpaper.service
+$ systemctl --user enable --now switch_wallpaper.timer
+< indication of success >
 ```
 
-It is suggested that you do not `enable` the service, as, when `systemd --user` starts, the system
-may not yet be ready for the wallpaper to be set. Instead, you can start `switch_wallpaper.service`
-from i3's config (this is the behavior of my config).
+It is suggested that you only `enable` the timer, not the service, as, when `systemd --user` starts,
+the system may not yet be ready for the wallpaper to be set. Instead, you can start
+`switch_wallpaper.service` from i3's config (this is the behavior with my config).
 
 ### Backlight control - `light`
 
