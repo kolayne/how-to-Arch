@@ -355,6 +355,8 @@ Install other packages and apps that you will use. My suggestion:
     - `feh` for wallpapers support <br>
       (configuration required, see next section)
     - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config
+    - `adapta-gtk-theme` - a gtk theme <br>
+      (configuration required, see next section)
     - `numlockx` to enable numlock automatically (must be configured in your login manager.
       Already enabled in the `emptty` config used above, executed after logging in)
 
@@ -416,7 +418,8 @@ Install other packages and apps that you will use. My suggestion:
 To install all of the above, run:
 ```sh
 $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
-      picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme numlockx \
+      picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
+      numlockx \
         \
       openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
         \
@@ -447,6 +450,26 @@ because they are started through `pdeath_hup`).
 
 If you are using a different setup, you need to configure your system to launch whatever you want to be
 autostarted.
+
+### Gtk theme
+
+To configure GTK-3 and GTK-4 apps to use the dark version of the Adapta theme, run:
+```sh
+$ mkdir -p ~/.config/gtk-{3,4}.0
+$ # If you already created custom gtk configs, this will overwrite them!
+$ echo '[Settings]' | tee ~/.config/gtk-{3,4}.0/settings.ini
+$ echo 'gtk-theme-name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
+$ echo 'gtk-icon-theme=name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
+$ echo 'gtk-application-prefer-dark-theme=true' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
+$
+```
+
+Additionally, to prevent some apps (e.g., `gnome-calculator`) from overriding the configured theme,
+install the patched version of `libadwaita`:
+```sh
+$ yay -S libadwaita-without-adwaita-git --asdeps
+< confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
+```
 
 ### User dirs
 
