@@ -388,7 +388,7 @@ Install other packages and apps that you will use. My suggestion:
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
     - `flameshot` to make screenshots
-    - `gedit` text editor
+    - `xed` text editor
     - `eog` image viewer
     - `mpv` media player <br>
       `mpv-mpris` to enable MPRIS support for mpv <br>
@@ -421,7 +421,7 @@ $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavuc
       openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
-      gnome-{system-monitor,calculator} flameshot gedit eog mpv{,-mpris} firefox chromium google-chrome \
+      gnome-{system-monitor,calculator} flameshot xed eog mpv{,-mpris} firefox chromium google-chrome \
       epiphany thunderbird birdtray obs-studio wps-office telegram-desktop jetbrains-toolbox timeshift \
         \
       nvidia{,-prime} xpadneo-dkms \
@@ -560,7 +560,7 @@ $ autotrash -d 30 --install
 ### Status panel - `polybar`
 
 Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/polybar_config.ini
-or use another sample config to start from.
+or use another sample config to start from. Put it at `~/.config/polybar/config.ini`.
 
 ### Night light - `redshift`
 
