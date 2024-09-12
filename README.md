@@ -311,6 +311,7 @@ $
 $ # Vim config
 $ cp ssac/.vimrc ~/.vimrc
 $
+$ # TODO: remove `polybar` from this tutorial, as I switched to i3bar
 $ # Polybar config
 $ mkdir -p ~/.config/polybar/
 $ cp ssac/polybar_config.ini ~/.config/polybar/config.ini
@@ -319,7 +320,7 @@ $ # That's it :)
 $ rm -rf ssac
 ```
 
-**KEEP IN MIND** that my `i3` config contains a lot of autostart commands, which will be silently ignored
+**KEEP IN MIND** that my `i3` config contains a lot of autostart commands that will be silently ignored
 if you don't have the corresponding software installed (we will install it in a further step).
 
 Now you can `reboot` and log in to a graphical environment. Press
@@ -440,8 +441,9 @@ $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavuc
 ### Background helpers
 
 Out of applications that you installed above, some (e.g., clipboard manager, polybar, etc) need to be
-running in the background. `pulseaudio` will be automatically launched by `systemd`; `dunst` will be
-launched on demand whenever a notification is sent; the rest need to be started at some point.
+running in the background. Out of such daemons, `pulseaudio` will be automatically launched by `systemd`;
+`dunst` will be launched on demand whenever a notification is sent; for the rest of them to start
+automatically additional set up is needed.
 
 If you are using my `i3` config, all the relevant applications are already there and will be started on
 log in and terminated on log out (xorg-dependent applications get notified when the graphical session
@@ -584,6 +586,11 @@ $ autotrash -d 30 --install
 
 Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/polybar_config.ini
 or use another sample config to start from. Put it at `~/.config/polybar/config.ini`.
+
+### Status panel - `i3bar`
+
+Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/.i3status.conf
+or use another sample config to start from. Put it at `~/.i3status.conf`
 
 ### Night light - `redshift`
 
