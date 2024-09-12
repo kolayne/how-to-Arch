@@ -478,6 +478,17 @@ $ yay -S libadwaita-without-adwaita-git --asdeps
 Edit the file `~/.config/user-dirs.dirs` and change `$HOME/Documents` to `$HOME/Docs` (the latter is
 easier to type in the terminal).
 
+### Git
+
+```sh
+$ git config --global init.defaultBranch master
+$ git config --global user.name "Your Full Name"
+$ git config --global user.email "your@email"
+$ git config --global alias.fpush 'push --force-with-lease'
+$ git config --global alias.dd diff
+$ git config --global alias.dc 'diff --cached'
+```
+
 ### picom
 
 Create or edit `~/.config/picom.conf`:
