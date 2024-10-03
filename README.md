@@ -487,6 +487,7 @@ $ git config --global user.email "your@email"
 $ git config --global alias.fpush 'push --force-with-lease'
 $ git config --global alias.dd diff
 $ git config --global alias.dc 'diff --cached'
+$ git config --global alias.rc 'rebase --continue'
 ```
 
 ### picom
@@ -635,6 +636,15 @@ $ sudo systemctl enable --now cronie.service
 < success indication >
 $ subo timeshift-gtk
 ```
+
+## Thunderbird
+
+<details>
+  <summary>TODO</summary>
+
+  Write something about configuring Thunderbird
+
+</details>
 
 ## Configure idleness, suspension, hibernation
 
