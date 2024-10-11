@@ -459,7 +459,7 @@ autostarted.
 To configure GTK-3 and GTK-4 apps to use the dark version of the Adapta theme, run:
 ```sh
 $ mkdir -p ~/.config/gtk-{3,4}.0
-$ # If you already created custom gtk configs, this will overwrite them!
+$ Do not run if you already created your own gtk configs: this will overwrite them!
 $ echo '[Settings]' | tee ~/.config/gtk-{3,4}.0/settings.ini
 $ echo 'gtk-theme-name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
 $ echo 'gtk-icon-theme=name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
