@@ -392,7 +392,8 @@ Install other packages and apps that you will use. My suggestion:
     - `gnome-calculator` calculator
     - `flameshot` to make screenshots
     - `xed` text editor
-    - `eog` image viewer
+    - `eog` (a user-friendly) image viewer
+    - `gpicview` (a performant) image viewer (better suit for huge photos)
     - `mpv` media player <br>
       `mpv-mpris` to enable MPRIS support for mpv <br>
       `yt-dlp` to enable YouTube support for mpv <br>
@@ -425,7 +426,7 @@ $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavuc
       openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
-      gnome-{system-monitor,calculator} flameshot xed eog mpv{,-mpris} firefox chromium google-chrome \
+      gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
       epiphany thunderbird birdtray obs-studio wps-office telegram-desktop jetbrains-toolbox timeshift \
         \
       nvidia{,-prime} xpadneo-dkms \
