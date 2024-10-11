@@ -293,28 +293,24 @@ $ git clone https://github.com/kolayne/some_scripts_and_configs.git ssac
 $ # Configures keyboard layout and touchpad behavior
 $ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/
 $
-$ # Bash config
-$ cp -r ssac/dotconfig__bash/ ~/.config/bash
+$ # Various configs
+$ mkdir -p ~/.config
+$ cp -r ssac/.config/* ~/.config/
+$ # An additional step to enable my bash config
+$ # (this OVERWRITES whatever you had in .bashrc at the moment)
 $ echo "source ~/.config/bash/rc" > ~/.bashrc
-$
-$ # Fish config
-$ cp -r ssac/dotconfig__fish/ ~/.config/fish
 $
 $ # Install `pdeath_hup`
 $ mkdir -p ~/.local/bin/
 $ gcc ssac/pdeath_hup.c -o ~/.local/bin/pdeath_hup
 $
-# # i3 config
-$ mkdir -p ~/.config/i3/
-$ cp ssac/i3_config ~/.config/i3/config
-$
 $ # Vim config
-$ cp ssac/.vimrc ~/.vimrc
+$ cp ssac/.vimrc ~/
 $
-$ # TODO: remove `polybar` from this tutorial, as I switched to i3bar
-$ # Polybar config
-$ mkdir -p ~/.config/polybar/
-$ cp ssac/polybar_config.ini ~/.config/polybar/config.ini
+$ # Gdb config
+$ cp ssac/.gdbinit ~/
+$
+$ # TODO: replace polybar with i3bar
 $
 $ # That's it :)
 $ rm -rf ssac
