@@ -13,10 +13,10 @@ Don't follow them blindly, though: this tutorial aggressively targets my persona
 
 ## Make a liveUSB and boot it
 
-Download an .iso file from https://archlinux.org/download/ and flush it to a flash drive in your favourite way, e.g.,
+Download an .iso file from https://archlinux.org/download/ and flash it to a flash drive in your favourite way, e.g.,
 with `dd`:
 ```sh
-sudo dd if=<path_to_image.iso> of=</dev/sdX_of_your_flash_drive> status=progress conv=notrunc,fsync bs=4M oflags=direct
+sudo dd if=<path_to_image.iso> of=</dev/sdX_of_your_flash_drive> status=progress conv=notrunc,fsync bs=16M oflag=direct
 ```
 (note the `/dev/sdX` rather than `/dev/sdXY`).
 
