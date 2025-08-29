@@ -484,6 +484,8 @@ $ git config --global user.email "your@email"
 $ git config --global alias.fpush 'push --force-with-lease'
 $ git config --global alias.dd diff
 $ git config --global alias.dc 'diff --cached'
+$ git config --global alias.ddh 'diff HEAD^'
+$ git config --global alias.dhh 'diff HEAD^ HEAD'
 $ git config --global alias.rc 'rebase --continue'
 ```
 
