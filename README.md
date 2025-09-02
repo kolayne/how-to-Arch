@@ -638,12 +638,17 @@ $ subo timeshift-gtk
 
 ## Thunderbird
 
-<details>
-  <summary>TODO</summary>
+The following customization for Thunderbird allows individual events coloring
+(similar to Google Calendar) with Thunderbird categories. However, it will
+ruin the interface if you have events assigned to multiple categories.
 
-  Write something about configuring Thunderbird
+Launch Thunderbird, go to Settings -> General -> Config editor. Set the
+`toolkit.legacyUserProfileCustomizations.stylesheets` property to `true`.
 
-</details>
+Close Thunderbird.
+Create file `~/.thunderbird/<profile-name>.default-release/chrome/userChrome.css`
+and put the [customization](https://github.com/kolayne/some_scripts_and_configs/blob/master/.thunderbird/profile-name/chrome/userChrome.css)
+in the file. The directory `chrome/` may not exist.
 
 ## Configure idleness, suspension, hibernation
 
