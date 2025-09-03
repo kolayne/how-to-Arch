@@ -48,6 +48,12 @@ $
 
 </details>
 
+> **WARNING**: tools such as `parted` or `fdisk` only change metadata in the partition
+> table, but do not alter the partitions themselves! It is fine if you will immediately
+> (re)format any partitions that you modify. However, if you need to shrink
+> an existing partition, the procedure is more complex than just resizing it in `parted`.
+> Please, look it up yourself or use built-in Windows tools or GParted.
+
 First, run `parted` on your disk (e.g., `parted /dev/nvme0n1`), and
 create the deisred partition layout.
 
