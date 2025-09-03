@@ -86,10 +86,10 @@ $ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ## Install essential packages
 
 First, optionally, make sure that you are satisifed with the automatically generated mirror list
-and the pacman configuration (for instance, I like to set `ParallelDownloads = 4` in the config):
+and the pacman configuration (e.g., uncomment `Color`):
 ```sh
 $ vim /etc/pacman.d/mirrorlist
-< view and change the mirror list >
+< view and change the mirror list. Alternatively, you can run `reflector` to configure mirrors, see the command a few sections below >
 $ vim /etc/pacman.conf
 < view and change the configuration >
 ```
@@ -191,14 +191,25 @@ $ nmcli dev wifi connect <SSID> password <password>
 < indication of success >
 ```
 
-## Set up pacman mirrors
+## Set up pacman
+
+### Edit /etc/pacman.conf:
+
+Uncomment line `Color`.
+
+Enable the `multilib` repository by uncommenting lines
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+### Set up mirrors
 
 ```sh
 $ pacman -Syu reflector
 < proceed with the installation >
-$ reflector --sort score --country ru --protocol https,ftp,rsync --fastest 10 > /tmp/reflector-gen
+$ reflector --sort score --country ru --protocol https,ftp,rsync --fastest 10 --save /etc/pacman.d/mirrorlist
 < warnings that some mirrors are inaccessible >
-$ mv /tmp/reflector-gen /etc/pacman.d/mirrrorlist
 ```
 
 ## Disable `faillock`
