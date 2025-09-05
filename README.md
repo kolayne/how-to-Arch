@@ -7,7 +7,7 @@ and other ArchWiki pages.
 
 Follow the steps below to end up with a usable desktop edition of Arch Linux similar to the one I am running on my laptop.
 Don't follow them blindly, though: this tutorial aggressively targets my personal preferences, which may not match yours
-(such as having four different web browsers installed at the same time).
+(such as having three different web browsers installed at the same time).
 
 # Part 1, live mode
 
@@ -347,6 +347,7 @@ Configure the rest to your liking by editing `~/.config/i3/config`!
 Install other packages and apps that you will use. My suggestion:
 
 -   System functionality packages
+    - `bluez` for bluetooth support
     - `noto-fonts{,-extra,-cjk,-emoji}` for extended font support
     - `ntfs-3g` for the NTFS filesystem support
     - `pipewire{,-alsa,-audio,-jack,-pulse}` - the `pipewire` media server for audio support, <br>
@@ -373,6 +374,7 @@ Install other packages and apps that you will use. My suggestion:
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
+    - `bluez-utils` for command-line bluetooth control, such as with `bluetoothctl`
     - `lsd` - `ls` on steroids
     - `c-lolcat` for the `lolcat` command (aliased to `cat` in my bash/fish configs)
     - `light` to control backlight <br>
@@ -386,6 +388,9 @@ Install other packages and apps that you will use. My suggestion:
       (configuration required, see next section)
     - `moreutils` many useful tools
     - `tldr` - like `man` but `tldr`
+    - `inetutils` - networking tools, including `telnet`
+    - `dog` - the DNS lookup tool
+    - `zip`, `unzip`, `rar`, `unrar` - tools for working with archives
 
 -   Graphical apps
     - `dmenu` app launcher
@@ -396,7 +401,8 @@ Install other packages and apps that you will use. My suggestion:
       (configuration suggested, see next section)
     - `xss-lock` screen saver (screen lock launcher) <br>
       `i3lock-color` screen lock app
-    - `terminator` terminal emulator
+    - `terminator` terminal emulator, <br>
+      `xterm` another (simpler) terminal emulator
     - `pcmanfm` file manager
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
@@ -408,15 +414,16 @@ Install other packages and apps that you will use. My suggestion:
       `mpv-mpris` to enable MPRIS support for mpv <br>
       `yt-dlp` to enable YouTube support for mpv <br>
       (configuration suggested, see next section)
-    - `firefox chromium google-chrome epiphany` web browsers
+    - `firefox chromium google-chrome` web browsers
     - `thunderbird` - Mozilla Thunderbird mail client <br>
       `birdtray` - additional tool to hide Thunderbird's window without closing it
     - `obs-studio` screen recording and streaming software
-    - `wps-office` office software
+    - `wps-office` office software, <br>
+      `onlyoffice-bin` office software
     - `telegram-desktop` messenger
-    - `jetbrains-toolbox` JetBrains IDEs installation manager (not integrated with pacman)
     - `timeshift` system backup and restore utility <br>
       (configuration required, see next section)
+    - `baobab` disk space usage analysis utility
 
 -   Drivers
     - `nvidia` for nvidia drivers <br>
@@ -429,20 +436,21 @@ Install other packages and apps that you will use. My suggestion:
 
 To install all of the above, run:
 ```sh
-$ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol \
+$ yay -Syu --needed \
+      bluez noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol \
       picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
       numlockx \
         \
-      openssh lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
+      openssh bluez-utils lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
+      inetutils dog zip unzip rar unrar \
         \
-      dmenu polybar cbatticon redshift xss-lock i3lock-color terminator pcmanfm \
+      dmenu polybar cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
       gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
-      epiphany thunderbird birdtray obs-studio wps-office telegram-desktop jetbrains-toolbox timeshift \
+      thunderbird birdtray obs-studio wps-office onlyoffice-bin telegram-desktop timeshift baobab \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
-      docker{,-buildx} \
-    --needed
+      docker{,-buildx}
 < study PKGBUILDs to make sure they are not mallicious; proceed with the installation >
 < confirm that `i3lock` needs to be uninstalled for `i3lock-color` to be installed >
 ```
