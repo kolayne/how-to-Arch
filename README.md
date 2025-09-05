@@ -349,11 +349,8 @@ Install other packages and apps that you will use. My suggestion:
 -   System functionality packages
     - `noto-fonts{,-extra,-cjk,-emoji}` for extended font support
     - `ntfs-3g` for the NTFS filesystem support
-    - `pulseaudio` for sound support, <br>
-      `pulseaudio-bluetooth` for bluetooth devices support, <br>
-      `pavucontrol` - GUI for pulseaudio settings, <br>
-      `paprefs` for some advanced pulseaudio settings <br>
-      (pulseaudio may require a reboot to start working)
+    - `pipewire{,-alsa,-audio,-jack,-pulse}` - the `pipewire` media server for audio support, <br>
+      `pwvucontrol` - GUI for volume control
     - `picom` (a [compositor](https://wiki.archlinux.org/title/Xorg#Composite))
       for windows transparency support and vertical synchronization (vsync) <br>
       (configuration required, see next section)
@@ -432,7 +429,7 @@ Install other packages and apps that you will use. My suggestion:
 
 To install all of the above, run:
 ```sh
-$ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavucontrol paprefs \
+$ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol \
       picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
       numlockx \
         \
@@ -454,10 +451,9 @@ $ yay -Syu noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pulseaudio{,-bluetooth} pavuc
 
 ### Background helpers
 
-Out of applications that you installed above, some (e.g., clipboard manager, polybar, etc) need to be
-running in the background. Out of such daemons, `pulseaudio` will be automatically launched by `systemd`;
-`dunst` will be launched on demand whenever a notification is sent; for the rest of them to start
-automatically additional set up is needed.
+Out of daemons that you installed above, some (e.g., clipboard manager, polybar, etc) need to be
+running in the background. Out of such daemons, `pipewire` and `dunst` will be launched automatically
+(on startup or on demand); for the rest of them to start automatically additional set up is needed.
 
 If you are using my `i3` config, all the relevant applications are already there and will be started on
 log in and terminated on log out (xorg-dependent applications get notified when the graphical session
@@ -611,6 +607,8 @@ $ autotrash -d 30 --install
 ```
 
 ### Status panel - `polybar`
+
+OOPS, this section is outdated. My current setup does not use polybar. TODO: fix.
 
 Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/polybar_config.ini
 or use another sample config to start from. Put it at `~/.config/polybar/config.ini`.
