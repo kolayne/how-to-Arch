@@ -355,21 +355,21 @@ Install other packages and apps that you will use. My suggestion:
       `pwvucontrol` - GUI for volume control
     - `picom` (a [compositor](https://wiki.archlinux.org/title/Xorg#Composite))
       for windows transparency support and vertical synchronization (vsync) <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `clipster` (a [clipboard manager](https://wiki.archlinux.org/title/Clipboard#Managers)) for better
       clipboard support (clipboard content preservation after an app is closed)
     - `gvfs` for your file manager to support the `trash:///` location (and some other virtual
       filesystems)
     - `ruby-fusuma` for touchpad gestures support, <br>
       `xdotool` for keyboard/mouse input emulation (will be useful with fusuma) <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `playerctl` - cli for media control (play/pause, next/prev, etc) <br>
-      (keyboard integration can be configured, see next section)
+      (keyboard integration can be configured, see the next section)
     - `feh` for wallpapers support <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config
     - `adapta-gtk-theme` - a gtk theme <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `numlockx` to enable numlock automatically (must be configured in your login manager.
       Already enabled in the `emptty` config used above, executed after logging in)
 
@@ -379,14 +379,14 @@ Install other packages and apps that you will use. My suggestion:
     - `lsd` - `ls` on steroids
     - `c-lolcat` for the `lolcat` command (aliased to `cat` in my bash/fish configs)
     - `light` to control backlight <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `htop` - console system monitor
     - `helix` - console text editor
     - `ffmpeg` - video editing utility
     - `rclone` - tool to mount remote clouds (such as Google Drive) into your system
     - `trash-cli` for the `trash` command (move files/directories to trash)
     - `autotrash` for purging old files from trash <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `moreutils` many useful tools
     - `tldr` - like `man` but `tldr`
     - `inetutils` - networking tools, including `telnet`
@@ -396,10 +396,10 @@ Install other packages and apps that you will use. My suggestion:
 -   Graphical apps
     - `dmenu` app launcher
     - `polybar` configurable status panel <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `cbatticon` low-battery notification sender
     - `redshift` screen color temperature adjusting tool (for night light) <br>
-      (configuration suggested, see next section)
+      (configuration suggested, see the next section)
     - `xss-lock` screen saver (screen lock launcher) <br>
       `i3lock-color` screen lock app
     - `terminator` terminal emulator, <br>
@@ -414,7 +414,7 @@ Install other packages and apps that you will use. My suggestion:
     - `mpv` media player <br>
       `mpv-mpris` to enable MPRIS support for mpv <br>
       `yt-dlp` to enable YouTube support for mpv <br>
-      (configuration suggested, see next section)
+      (configuration suggested, see the next section)
     - `firefox chromium google-chrome` web browsers
     - `thunderbird` - Mozilla Thunderbird mail client <br>
       `birdtray` - additional tool to hide Thunderbird's window without closing it
@@ -423,7 +423,7 @@ Install other packages and apps that you will use. My suggestion:
       `onlyoffice-bin` office software
     - `telegram-desktop` messenger
     - `timeshift` system backup and restore utility <br>
-      (configuration required, see next section)
+      (configuration required, see the next section)
     - `baobab` disk space usage analysis utility
 
 -   Drivers
@@ -433,7 +433,8 @@ Install other packages and apps that you will use. My suggestion:
 
 -   Daemons
     - `docker` - Docker daemon <br>
-      `docker-buildx` - Docker BuildX plugin
+      `docker-buildx` - Docker BuildX plugin <br>
+      (configuration required, see the next section)
 
 To install all of the above, run:
 ```sh
@@ -472,32 +473,12 @@ because they are started through `pdeath_hup`).
 If you are using a different setup, you need to configure your system to launch whatever you want to be
 autostarted.
 
-### Gtk theme
+### Docker
 
-To configure GTK-3 and GTK-4 apps to use the dark version of the Adapta theme, run:
+To make interaction with `docker` more comfortable, run:
 ```sh
-$ mkdir -p ~/.config/gtk-{3,4}.0
-$ Do not run if you already created your own gtk configs: this will overwrite them!
-$ echo '[Settings]' | tee ~/.config/gtk-{3,4}.0/settings.ini
-$ echo 'gtk-theme-name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
-$ echo 'gtk-icon-theme=name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
-$ echo 'gtk-application-prefer-dark-theme=true' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
-$
-```
-
-Additionally, to prevent some apps (e.g., `gnome-calculator`) from overriding the configured theme,
-install the patched version of `libadwaita`:
-```sh
-$ yay -S libadwaita-without-adwaita-git --asdeps
-< confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
-```
-
-### User dirs
-
-Setup "well known" user direcotries and change the "Documents" directory from the default
-`$HOME/Documents` to `$HOME/Docs` (as it's easier to type on the terminal):
-```sh
-$ xdg-user-dirs-update --set DOCUMENTS "$HOME/Docs"
+$ sudo systemctl enable --now docker.socket  # Start the docker daemon on demand
+$ sudo usermod -aG docker $USER  # Allow running `docker` commands without `sudo`
 ```
 
 ### Git
@@ -514,10 +495,62 @@ $ git config --global alias.dhh 'diff HEAD^ HEAD'
 $ git config --global alias.rc 'rebase --continue'
 ```
 
+### makepkg
+
+Edit `/etc/makepkg.conf`: change the line
+```sh
+OPTIONS=(... debug ...)
+```
+to
+```sh
+OPTIONS=(... !debug ...)
+```
+
+This will prevent automatic build of debug packages with `makepkg`.
+
+### Backlight control - `light`
+
+Add all users that need to run `light` to the `video` group:
+```sh
+$ sudo usermod -aG video $USER
+```
+
+To additionally support brightness control keys on your keyboard, add the following lines to your
+`i3` config (they are already there if you used mine):
+```
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+```
+
+### Automatic trash clean up - `autotrash`
+
+To automatically clean files older than 30 days, run:
+```sh
+$ autotrash -d 30 --install
+< some output >
+```
+
+### topgrade
+
+Run `topgrade` to get the initial `~/.config/topgrade.toml` configuration file.
+Next, edit it to contain the following:
+```
+# ...
+[misc]
+# ...
+pre_sudo = true
+# ...
+disable = ["containers"]
+```
+
+With these changes, topgrade will run `sudo -v` before performing the update and will
+skip updating docker containers.
+
 ### picom
 
 Create or edit `~/.config/picom.conf`:
 ```
+backend = "glx";
 vsync = true;
 fading = false;
 ```
@@ -559,9 +592,26 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 You can find XF86* keys names and add similar lines for other `playerctl` commands: `stop`,
 `next`, `previous`, etc.
 
+### Screenshotting - `flameshot`
+
+Run `flameshot`, open its settings from the tray, and configure it as follows:
+
+Tab General:
+
+- Turn off "Automatically unload from memory when it is not needed" (flameshot must remain running for the
+  copied image to remain in the clipboard)
+- Turn on "Show tray icon"
+- Turn off "Show abort notifications" (they are noisy and inconvenient when retrying a screenshot)
+- Turn off "Save image after copy"
+- Turn off "Show welcome message on launch"
+
+Tab Shortcuts:
+
+- Set "Copy selection to clipboard" action to Enter
+
 ### Wallpapers - `feh`
 
-Run the following commands and paste the following files:
+Run the following commands and paste the following files (replace the path with the path to your wallpapers dir):
 ```sh
 $ systemctl --user edit switch_wallpaper.service --full --force
 [Unit]
@@ -569,7 +619,7 @@ Description=Set a random wallpaper from a directory (hardcoded in the service fi
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/env DISPLAY=:0 /usr/bin/feh --randomize --bg-max /home/nikolay/Images/bleach_wallpapers
+ExecStart=/usr/bin/env DISPLAY=:0 /usr/bin/feh --randomize --bg-max /path/to/your/wallpapers
 
 [Install]
 WantedBy=default.target
@@ -595,28 +645,6 @@ $ systemctl --user enable --now switch_wallpaper.timer
 It is suggested that you only `enable` the timer, not the service, as, when `systemd --user` starts,
 the system may not yet be ready for the wallpaper to be set. Instead, you can start
 `switch_wallpaper.service` from i3's config (this is the behavior with my config).
-
-### Backlight control - `light`
-
-Add all users that need to run `light` to the `video` group:
-```sh
-$ sudo usermod -aG video $USER
-```
-
-To additionally support brightness control keys on your keyboard, add the following lines to your
-`i3` config (they are already there if you used mine):
-```
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
-```
-
-### Automatic trash clean up - `autotrash`
-
-To automatically clean files older than 30 days, run:
-```sh
-$ autotrash -d 30 --install
-< some output >
-```
 
 ### Status panel - `polybar`
 
@@ -652,6 +680,34 @@ ytdl-format=bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best
 --save-position-on-quit
 --script=/usr/lib/mpv-mpris/mpris.so
 --write-filename-in-watch-later-config
+```
+
+### User dirs
+
+Setup "well known" user direcotries and change the "Documents" directory from the default
+`$HOME/Documents` to `$HOME/Docs` (as it's easier to type on the terminal):
+```sh
+$ xdg-user-dirs-update --set DOCUMENTS "$HOME/Docs"
+```
+
+### Gtk theme
+
+To configure GTK-3 and GTK-4 apps to use the dark version of the Adapta theme, run:
+```sh
+$ mkdir -p ~/.config/gtk-{3,4}.0
+$ Do not run if you already created your own gtk configs: this will overwrite them!
+$ echo '[Settings]' | tee ~/.config/gtk-{3,4}.0/settings.ini
+$ echo 'gtk-theme-name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
+$ echo 'gtk-icon-theme=name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
+$ echo 'gtk-application-prefer-dark-theme=true' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
+$
+```
+
+Additionally, to prevent some apps (e.g., `gnome-calculator`) from overriding the configured theme,
+install the patched version of `libadwaita`:
+```sh
+$ yay -S libadwaita-without-adwaita-git --asdeps
+< confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
 ```
 
 ### Timeshift
