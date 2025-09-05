@@ -147,7 +147,7 @@ $ hwclock --systohc
 
 ### Localization
 
-1.  Edit `/etc/locale.gen` and uncomment locales that you need, e.g., `en_US *`, `en_GB *`, `ru_RU *`.
+1.  Edit `/etc/locale.gen` and uncomment locales that you need, e.g., `en_US*`, `en_GB*`, `ru_RU*`, `ko_KR*`.
 2.  Run `locale-gen`
 3.  Edit `/etc/locale.conf` and set locale variables (one per line), e.g., `LANG=en_US.UTF-8`, `LC_TIME=en_GB.UTF-8`.
 
