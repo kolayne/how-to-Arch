@@ -555,6 +555,15 @@ vsync = true;
 fading = false;
 ```
 
+### Default apps
+
+Set default applications for file formats:
+```sh
+xdg-mime default gpicview.desktop image/jpeg
+xdg-mime default gpicview.desktop image/png
+xdg-mime default pcmanfm.desktop inode/directory
+```
+
 ### fusuma
 
 Add all users that need to run `fusuma` to the `input` group:
