@@ -350,6 +350,7 @@ Install other packages and apps that you will use. My suggestion:
     - `bluez` for bluetooth support
     - `noto-fonts{,-extra,-cjk,-emoji}` for extended font support
     - `ntfs-3g` for the NTFS filesystem support
+    - `xdg-user-dirs` for nice "well known" home directories support
     - `pipewire{,-alsa,-audio,-jack,-pulse}` - the `pipewire` media server for audio support, <br>
       `pwvucontrol` - GUI for volume control
     - `picom` (a [compositor](https://wiki.archlinux.org/title/Xorg#Composite))
@@ -437,8 +438,8 @@ Install other packages and apps that you will use. My suggestion:
 To install all of the above, run:
 ```sh
 $ yay -Syu --needed \
-      bluez noto-fonts{,-extra,-cjk,-emoji} ntfs-3g pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol \
-      picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
+      bluez noto-fonts{,-extra,-cjk,-emoji} ntfs-3g xdg-user-dirs pipewire{,-alsa,-audio,-jack,-pulse} \
+      pwvucontrol picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
       numlockx \
         \
       openssh bluez-utils lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
@@ -493,8 +494,11 @@ $ yay -S libadwaita-without-adwaita-git --asdeps
 
 ### User dirs
 
-Edit the file `~/.config/user-dirs.dirs` and change `$HOME/Documents` to `$HOME/Docs` (the latter is
-easier to type in the terminal).
+Setup "well known" user direcotries and change the "Documents" directory from the default
+`$HOME/Documents` to `$HOME/Docs` (as it's easier to type on the terminal):
+```sh
+$ xdg-user-dirs-update --set DOCUMENTS "$HOME/Docs"
+```
 
 ### Git
 
