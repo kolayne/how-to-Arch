@@ -768,7 +768,7 @@ HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont bl
 ```
 And rebuild the cpio image:
 ```sh
-$ mkinitcpio -P
+$ sudo mkinitcpio -P
 ```
 
 On a modern system (systemd >= 255, mkinitcpio >= 38, UEFI system) this should be sufficient:
