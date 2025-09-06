@@ -391,7 +391,7 @@ Install other packages and apps that you will use. My suggestion:
     - `tldr` - like `man` but `tldr`
     - `inetutils` - networking tools, including `telnet`
     - `dog` - the DNS lookup tool
-    - `zip`, `unzip`, `rar`, `unrar` - tools for working with archives
+    - `zip`, `unzip`, `rar` - tools for working with archives
 
 -   Graphical apps
     - `dmenu` app launcher
@@ -419,7 +419,7 @@ Install other packages and apps that you will use. My suggestion:
     - `thunderbird` - Mozilla Thunderbird mail client <br>
       `birdtray` - additional tool to hide Thunderbird's window without closing it
     - `obs-studio` screen recording and streaming software
-    - `wps-office` office software, <br>
+    - `wps-office-bin` office software, <br>
       `onlyoffice-bin` office software
     - `telegram-desktop` messenger
     - `timeshift` system backup and restore utility <br>
@@ -444,11 +444,11 @@ $ yay -Syu --needed \
       numlockx \
         \
       openssh bluez-utils lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
-      inetutils dog zip unzip rar unrar \
+      inetutils dog zip unzip rar \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
       gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
-      thunderbird birdtray obs-studio wps-office onlyoffice-bin telegram-desktop timeshift baobab \
+      thunderbird birdtray obs-studio wps-office-bin onlyoffice-bin telegram-desktop timeshift baobab \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
