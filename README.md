@@ -392,6 +392,8 @@ Install other packages and apps that you will use. My suggestion:
     - `inetutils` - networking tools, including `telnet`
     - `dog` - the DNS lookup tool
     - `zip`, `unzip`, `rar` - tools for working with archives
+    - `rustup` - the Rust toolchain installer <br>
+      (configuration required, see the next section)
 
 -   Graphical apps
     - `dmenu` app launcher
@@ -445,7 +447,7 @@ $ yay -Syu --needed \
       numlockx \
         \
       openssh bluez-utils lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
-      inetutils dog zip unzip rar \
+      inetutils dog zip unzip rar rustup \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
       gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
@@ -495,6 +497,13 @@ $ git config --global alias.dc 'diff --cached'
 $ git config --global alias.ddh 'diff HEAD^'
 $ git config --global alias.dhh 'diff HEAD^ HEAD'
 $ git config --global alias.rc 'rebase --continue'
+```
+
+### rustup
+
+To install the rust toolchain, run:
+```sh
+$ rustup toolchain install stable
 ```
 
 ### makepkg
