@@ -153,7 +153,7 @@ $ hwclock --systohc
 
 ### Hostname
 
-Set your hostname:
+Come up with a hostname and set it:
 ```sh
 echo YOUR_HOSTNAME > /etc/hostname
 ```
