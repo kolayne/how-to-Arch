@@ -421,7 +421,8 @@ Install other packages and apps that you will use. My suggestion:
     - `obs-studio` screen recording and streaming software
     - `wps-office-bin` office software, <br>
       `onlyoffice-bin` office software
-    - `telegram-desktop` messenger
+    - `telegram-desktop` client for the Telegram messenger
+    - `vk-messenger-bin` client for the VK messenger
     - `timeshift` system backup and restore utility <br>
       (configuration required, see the next section)
     - `baobab` disk space usage analysis utility
@@ -448,7 +449,8 @@ $ yay -Syu --needed \
         \
       dmenu polybar cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
       gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
-      thunderbird birdtray obs-studio wps-office-bin onlyoffice-bin telegram-desktop timeshift baobab \
+      thunderbird birdtray obs-studio wps-office-bin onlyoffice-bin telegram-desktop vk-messenger-bin timeshift \
+      baobab \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
