@@ -327,8 +327,6 @@ $
 $ # Gdb config
 $ cp ssac/.gdbinit ~/
 $
-$ # TODO: replace polybar with i3bar
-$
 $ # That's it :)
 $ rm -rf ssac
 ```
@@ -397,8 +395,6 @@ Install other packages and apps that you will use. My suggestion:
 
 -   Graphical apps
     - `dmenu` app launcher
-    - `polybar` configurable status panel <br>
-      (configuration required, see the next section)
     - `cbatticon` low-battery notification sender
     - `redshift` screen color temperature adjusting tool (for night light) <br>
       (configuration suggested, see the next section)
@@ -449,7 +445,7 @@ $ yay -Syu --needed \
       openssh bluez-utils lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
       inetutils dog zip unzip rar rustup \
         \
-      dmenu polybar cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
+      dmenu cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
       gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
       thunderbird birdtray obs-studio wps-office-bin onlyoffice-bin telegram-desktop vk-messenger-bin timeshift \
       baobab \
@@ -652,13 +648,6 @@ $ systemctl --user enable --now switch_wallpaper.timer
 It is suggested that you only `enable` the timer, not the service, as, when `systemd --user` starts,
 the system may not yet be ready for the wallpaper to be set. Instead, you can start
 `switch_wallpaper.service` from i3's config (this is the behavior with my config).
-
-### Status panel - `polybar`
-
-OOPS, this section is outdated. My current setup does not use polybar. TODO: fix.
-
-Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/polybar_config.ini
-or use another sample config to start from. Put it at `~/.config/polybar/config.ini`.
 
 ### Status panel - `i3bar`
 
