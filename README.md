@@ -506,19 +506,6 @@ To install the rust toolchain, run:
 $ rustup toolchain install stable
 ```
 
-### makepkg
-
-Edit `/etc/makepkg.conf`: change the line
-```sh
-OPTIONS=(... debug ...)
-```
-to
-```sh
-OPTIONS=(... !debug ...)
-```
-
-This will prevent automatic build of debug packages with `makepkg`.
-
 ### Backlight control - `light`
 
 Add all users that need to run `light` to the `video` group:
