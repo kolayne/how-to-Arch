@@ -461,7 +461,7 @@ $ yay -Syu --needed \
 
 ### Background helpers
 
-Out of daemons that you installed above, some (e.g., clipboard manager, polybar, etc) need to be
+Out of daemons that you installed above, some (e.g., clipboard manager) need to be
 running in the background. Out of such daemons, `pipewire` and `dunst` will be launched automatically
 (on startup or on demand); for the rest of them to start automatically additional set up is needed.
 
@@ -733,12 +733,15 @@ in the file. The directory `chrome/` may not exist.
 
 ## Configure idleness, suspension, hibernation
 
+(note: I am no longer using suspend-then-hibernate, since it has been pretty buggy
+over many systemd releases in a row)
+
 Edit `/etc/systemd/sleep.conf` such that it has the following entries:
 ```
 [Sleep]
 AllowSuspend=yes
 AllowHibernation=yes
-AllowSuspendThenHibernate=yes
+AllowSuspendThenHibernate=no
 #...
 ```
 
@@ -746,15 +749,15 @@ Edit `/etc/systemd/logind.conf` such that it contains the following entries:
 ```
 [Login]
 #...
-HandlePowerKey=suspend-then-hibernate
+HandlePowerKey=suspend
 #...
 HandleSuspendKey=suspend
 #...
-HandleLidSwitch=suspend-then-hibernate
-HandleLidSwitchExternalPower=suspend-then-hibernate
+HandleLidSwitch=suspend
+HandleLidSwitchExternalPower=suspend
 HandleLidSwitchDocked=ignore
 #...
-IdleAction=suspend-then-hibernate
+IdleAction=suspend
 IdleActionSec=30min
 #...
 ```
