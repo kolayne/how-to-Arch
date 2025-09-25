@@ -361,6 +361,7 @@ Install other packages and apps that you will use. My suggestion:
     - `rustup` - the Rust toolchain installer <br>
       (configuration required, see the next section)
     - `jq` - a command-line json manipulation tool (required by my `Hyprland` config)
+    - `asciinema` - a terminal record-and-share utility
 
 -   Graphical apps
     - `rofi` app launcher
@@ -410,7 +411,7 @@ $ yay -Syu --needed \
       adapta-gtk-theme \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \
-      inetutils dog zip unzip rar rustup jq \
+      inetutils dog zip unzip rar rustup jq asciinema \
         \
       rofi waybar hyprlock terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
