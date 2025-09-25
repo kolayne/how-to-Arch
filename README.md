@@ -264,51 +264,30 @@ $ makepkg -s -i
 
 ## Set up a graphical environment
 
-Install the `i3` window manager and the `emptty` display manager:
+Install the `Hyprland` wayland compositor (can also be done with `pacman` instead of `yay`):
 ```sh
-$ yay -Syu i3 emptty
-< study the PKGBUILD to make sure it's not mallicious (and always do this in the future when installing AUR packages) >
-< select all packages from the i3 group >
-< select the noto-fonts provider for the fonts >
-$ sudo systemctl enable emptty
-< indication of success >
+$ yay -S hyprland
 ```
 
-Create `~/.config/emptty` and make it executable (`chmod +x`). This file will be sourced by `emptty`
-before launching your window manager. Paste the following content:
+Install the most crucial things that you will need in a graphical environment, such as a terminal emulator.
+My preferred terminal emulator is `terminator`, but if you want to run `Hyprland` with the default config,
+you _may_ need to use a different one, such as `kitty`. You may install both:
+
 ```sh
-#!/bin/sh
-Selection=true  # `emptty` will offer the window manager selection
-
-# Perform your setup here
-export PATH=$HOME/.local/bin:$PATH
-export LC_TIME=en_GB.UTF-8
-numlockx on  # Turns numlock on (requires the `numlockx` package)
-
-exec dbus-launch "$@"  # Launch the selected window manager
+$ yay -Syu kitty  # The default config supports `kitty` (and some other emulators?)
+$ yay -Syu terminator  # My config only supports `terminator`
 ```
-
-Install most crucial things that you will need in a graphical environment, such as `dmenu` to start applications
-and the `terminator` terminal emulator.
-```sh
-$ yay -Syu dmenu terminator
-< proceed with installation >
-```
-
-Note: you may need to rebot before you will be able to start graphical interface.
 
 ## Restore your configurations
 
-If you have any previous configurations for your software (especially, Xorg- or `i3`-related),
-you can restore them now. If you don't, you can either skip this step (and only configure things
+If you have any previous configurations for your software (such as your `Hyprland` config),
+restore them now. If you don't, you can either skip this step (and only configure things
 later, when you need something), or use someone else's configs as a starting point.
 
 To set up my configuration:
 ```sh
 $ git clone https://github.com/kolayne/some_scripts_and_configs.git ssac
 < some output >
-$ # Configures keyboard layout and touchpad behavior
-$ sudo cp ssac/40-libinput.conf /etc/X11/xorg.conf.d/
 $
 $ # Various configs
 $ mkdir -p ~/.config
@@ -325,14 +304,17 @@ $ # That's it :)
 $ rm -rf ssac
 ```
 
-**KEEP IN MIND** that my `i3` config contains a lot of autostart commands that will be silently ignored
-if you don't have the corresponding software installed (we will install it in a further step).
+**KEEP IN MIND** that my `Hyprland` config contains autostart commands that will be silently skipped
+if you don't have the corresponding software installed (we will install it in the following step).
 
-Now you can `reboot` and log in to a graphical environment. Press
-`Alt+Enter` (default i3 config) or `Super+Enter` (my i3 config) to launch a terminal emulator;
-press `Alt+d` (default i3 config) or `Alt+F2` (my i3 config) to lanuch another application.
 
-Configure the rest to your liking by editing `~/.config/i3/config`!
+If you want, you may enter your graphical environment now. For that, as your user, run `Hyprland`.
+You should be able to start graphical interface without rebooting.
+
+Once in the graphical environment, press `Super+Q` (default `Hyprland` config) or `Super+Enter`
+(my `Hyprland` config) to launch a terminal emulator.
+
+Configure the rest to your liking by editing `~/.config/hypr/hyprland.conf`!
 
 ## Install more packages that you will need
 
@@ -341,29 +323,21 @@ Install other packages and apps that you will use. My suggestion:
 -   System functionality packages
     - `bluez` for bluetooth support
     - `noto-fonts{,-extra,-cjk,-emoji}` for extended font support
+    - `otf-font-awesome` for some more emoji fonts, required by `waybar`
     - `ntfs-3g` for the NTFS filesystem support
     - `xdg-user-dirs` for nice "well known" home directories support
     - `pipewire{,-alsa,-audio,-jack,-pulse}` - the `pipewire` media server for audio support, <br>
       `pwvucontrol` - GUI for volume control
-    - `picom` (a [compositor](https://wiki.archlinux.org/title/Xorg#Composite))
-      for windows transparency support and vertical synchronization (vsync) <br>
+    - `wl-clip-persist` to preserve clipboard content after an app is closed
+    - `hypridle` for idle session management in Hyprland <br>
       (configuration required, see the next section)
-    - `clipster` (a [clipboard manager](https://wiki.archlinux.org/title/Clipboard#Managers)) for better
-      clipboard support (clipboard content preservation after an app is closed)
     - `gvfs` for your file manager to support the `trash:///` location (and some other virtual
       filesystems)
-    - `ruby-fusuma` for touchpad gestures support, <br>
-      `xdotool` for keyboard/mouse input emulation (will be useful with fusuma) <br>
-      (configuration required, see the next section)
     - `playerctl` - cli for media control (play/pause, next/prev, etc) <br>
       (keyboard integration can be configured, see the next section)
-    - `feh` for wallpapers support <br>
-      (configuration required, see the next section)
     - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config
     - `adapta-gtk-theme` - a gtk theme <br>
       (configuration required, see the next section)
-    - `numlockx` to enable numlock automatically (must be configured in your login manager.
-      Already enabled in the `emptty` config used above, executed after logging in)
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
@@ -371,7 +345,7 @@ Install other packages and apps that you will use. My suggestion:
     - `lsd` - `ls` on steroids
     - `c-lolcat` for the `lolcat` command (aliased to `cat` in my bash/fish configs)
     - `light` to control backlight <br>
-      (configuration required, see the next section)
+      (configuration suggested, see the next section)
     - `htop` - console system monitor
     - `gdb` - console debugger
     - `vim` - console text editor
@@ -388,16 +362,15 @@ Install other packages and apps that you will use. My suggestion:
     - `zip`, `unzip`, `rar` - tools for working with archives
     - `rustup` - the Rust toolchain installer <br>
       (configuration required, see the next section)
+    - `jq` - a command-line json manipulation tool (required by my `Hyprland` config)
 
 -   Graphical apps
-    - `dmenu` app launcher
-    - `cbatticon` low-battery notification sender
-    - `redshift` screen color temperature adjusting tool (for night light) <br>
-      (configuration suggested, see the next section)
-    - `xss-lock` screen saver (screen lock launcher) <br>
-      `i3lock-color` screen lock app
+    - `rofi` app launcher
+    - `waybar` status bar
+    - `hyprlock` screen lock app <br>
+      (configuration required, see the next section)
     - `terminator` terminal emulator, <br>
-      `xterm` another (simpler) terminal emulator
+      `foot` - another (simpler) terminal emulator
     - `pcmanfm` file manager
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
@@ -410,8 +383,7 @@ Install other packages and apps that you will use. My suggestion:
       `yt-dlp` to enable YouTube support for mpv <br>
       (configuration suggested, see the next section)
     - `firefox chromium google-chrome` web browsers
-    - `thunderbird` - Mozilla Thunderbird mail client <br>
-      `birdtray` - additional tool to hide Thunderbird's window without closing it
+    - `thunderbird` - Mozilla Thunderbird mail client
     - `obs-studio` screen recording and streaming software
     - `wps-office-bin` office software, <br>
       `onlyoffice-bin` office software
@@ -434,23 +406,21 @@ Install other packages and apps that you will use. My suggestion:
 To install all of the above, run:
 ```sh
 $ yay -Syu --needed \
-      bluez noto-fonts{,-extra,-cjk,-emoji} ntfs-3g xdg-user-dirs pipewire{,-alsa,-audio,-jack,-pulse} \
-      pwvucontrol picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
-      numlockx \
+      bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
+      pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl yaru-sound-theme \
+      adapta-gtk-theme \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \
-      inetutils dog zip unzip rar rustup \
+      inetutils dog zip unzip rar rustup jq \
         \
-      dmenu cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
-      gnome-{system-monitor,calculator} flameshot xed eog gpicview mpv{,-mpris} firefox chromium google-chrome \
-      thunderbird birdtray obs-studio wps-office-bin onlyoffice-bin telegram-desktop vk-messenger-bin timeshift \
-      baobab \
+      rofi waybar hyprlock terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot xed eog gpicview \
+      mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
+      vk-messenger-bin timeshift baobab \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
       docker{,-buildx}
 < study PKGBUILDs to make sure they are not mallicious; proceed with the installation >
-< confirm that `i3lock` needs to be uninstalled for `i3lock-color` to be installed >
 ```
 
 ## Configure your system
@@ -461,10 +431,10 @@ Out of daemons that you installed above, some (e.g., clipboard manager) need to 
 running in the background. Out of such daemons, `pipewire` and `dunst` will be launched automatically
 (on startup or on demand); for the rest of them to start automatically additional set up is needed.
 
-If you are using my `i3` config, all the relevant applications are already there and will be started on
-log in and terminated on log out (xorg-dependent applications get notified when the graphical session
-is over, so they can terminate; the rest, such as fusuma, are sent a SIGHUP signal on `i3` termination
-because they are started through `pdeath_hup`).
+If you are using my `Hyprland` config, all the relevant applications are already there and will be started on
+log in and terminated on log out (graphical applications will know when the graphical session
+is over, so they can terminate; the rest, such as `wl-clip-persist`, are sent a SIGHUP signal on `Hyprland`
+termination because they are started through `pdeath_hup`).
 
 If you are using a different setup, you need to configure your system to launch whatever you want to be
 autostarted.
@@ -505,12 +475,9 @@ Add all users that need to run `light` to the `video` group:
 $ sudo usermod -aG video $USER
 ```
 
-To additionally support brightness control keys on your keyboard, add the following lines to your
-`i3` config (they are already there if you used mine):
-```
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
-```
+To also support brightness control keys on your keyboard, make sure that your compositor
+config uses the `light` utility for backlight control (`XF86MonBrightnessUp`, `XF86MonBrightnessDown`).
+It is already configured if you are using my `Hyprland` config.
 
 ### Automatic trash clean up - `autotrash`
 
@@ -536,15 +503,6 @@ disable = ["containers"]
 With these changes, topgrade will run `sudo -v` before performing the update and will
 skip updating docker containers.
 
-### picom
-
-Create or edit `~/.config/picom.conf`:
-```
-backend = "glx";
-vsync = true;
-fading = false;
-```
-
 ### Default apps
 
 Set default applications for file formats:
@@ -553,43 +511,6 @@ xdg-mime default gpicview.desktop image/jpeg
 xdg-mime default gpicview.desktop image/png
 xdg-mime default pcmanfm.desktop inode/directory
 ```
-
-### fusuma
-
-Add all users that need to run `fusuma` to the `input` group:
-```sh
-$ sudo usermod -aG input $USER
-```
-
-Create `~/.config/fusuma/config.yml` and put the following:
-```
-swipe:
-  3:
-    down:
-      command: "xdotool key ctrl+Tab"
-    up:
-      command: "xdotool key ctrl+Shift+Tab"
-
-  4:
-    left:
-      command: "i3 focus left"
-    right:
-      command: "i3 focus right"
-
-interval:
-  swipe: 0.6
-```
-
-### Media keys - `i3` + `playerctl`
-
-Add the following line to your `i3` config (it is already there if you used mine) to
-support the keyboard play/pause media key, as well as play/pause buttons on bluetooth devices:
-```sh
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-```
-
-You can find XF86* keys names and add similar lines for other `playerctl` commands: `stop`,
-`next`, `previous`, etc.
 
 ### Screenshotting - `flameshot`
 
@@ -608,57 +529,13 @@ Tab Shortcuts:
 
 - Set "Copy selection to clipboard" action to Enter
 
-### Wallpapers - `feh`
+### `hyprlock` screen lock
 
-Run the following commands and paste the following files (replace the path with the path to your wallpapers dir):
-```sh
-$ systemctl --user edit switch_wallpaper.service --full --force
-[Unit]
-Description=Set a random wallpaper from a directory (hardcoded in the service file), using `feh`
+TODO
 
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/env DISPLAY=:0 /usr/bin/feh --randomize --bg-max /path/to/your/wallpapers
+### `hypridle` idleness management
 
-[Install]
-WantedBy=default.target
-
-$ systemctl --user edit switch_wallpaper.timer --full --force
-[Unit]
-Description=Change background after timeout (uses set_random_wallpaper.service)
-
-[Timer]
-OnUnitActiveSec=15min
-
-[Install]
-WantedBy=timers.target
-```
-
-Next, run:
-```sh
-$ systemctl --user start switch_wallpaper.service
-$ systemctl --user enable --now switch_wallpaper.timer
-< indication of success >
-```
-
-It is suggested that you only `enable` the timer, not the service, as, when `systemd --user` starts,
-the system may not yet be ready for the wallpaper to be set. Instead, you can start
-`switch_wallpaper.service` from i3's config (this is the behavior with my config).
-
-### Status panel - `i3bar`
-
-Import my config from https://github.com/kolayne/some_scripts_and_configs/blob/master/.i3status.conf
-or use another sample config to start from. Put it at `~/.i3status.conf`
-
-### Night light - `redshift`
-
-Create `~/.config/redshift.conf` and paste the following, replacing with your dawn and dusk time
-(or use other options, such as geolocation, see the manual for redshift):
-```
-[redshift]
-dawn-time=3:00-5:00
-dusk-time=19:30-21:00
-```
+TODO
 
 ### Media player - `mpv`
 
@@ -782,5 +659,5 @@ follow the README instructions.
 
 -   Install [docker-on-top](https://github.com/kolayne/docker-on-top)
 
--   Clone [Rimokon](https://github.com/kolayne/Rimokon) to `~/Docs/Rimokon` and configure it
-    (with my `i3` config it will be started on log in automatically)
+-   Clone [Rimokon](https://github.com/kolayne/Rimokon) to `~/Docs/Rimokon` and configure it.
+    With my `Hyprland` config it will be started on log in automatically
