@@ -1,0 +1,59 @@
+#!/bin/echo This file is supposed to be sourced only:
+
+alias ll='lsd -al --icon never'
+
+alias devil='sudo -Ebu $USER'
+complete -c devil
+edevil() {
+	devil "$@" && exit
+}
+complete -c edevil
+
+alias cat='lolcat --random'
+
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias cd-='cd -'
+function mcd() {
+    mkdir -p -- "$1" && cd -- "$1"
+}
+
+
+alias yay='systemd-inhibit --why="Package installation/removal/upgrade" yay'
+alias topgrade='systemd-inhibit --why="System upgrade" topgrade'
+
+
+_alert_paplay='paplay /usr/share/sounds/Yaru/stereo/complete.oga'
+if [[ -z "$(alias alert 2>/dev/null)" ]]; then
+    echo Warning: \'alert\' alias is not defined. Aliasing to just sound >&2
+    alias alert="$_alert_paplay"
+else
+    # Redefine the alias to play the sound as command completes.
+    #
+    # This is a sorta dirty trick relying on that `alias` outputs the alias in a
+    # reusable format without trailing whitespace, but I found no better way.
+    eval "$(alias -p alert)"'" && '"$_alert_paplay"'"'
+fi
+
+
+# Lazy loading of `fuck`
+function fuck() {
+    eval "$(thefuck --alias)" && fuck "$@"
+}
+
+
+function inhibit_lid() {
+    systemd-inhibit --what=handle-lid-switch "$@"
+}
+
+function inhibit_idle() {
+    systemd-inhibit --what=idle "$@"
+}
+
+
+alias vpna='wg-quick up amsterdam'
+alias vpnad='wg-quick down amsterdam'
+
+alias gomount='udisksctl mount -b'

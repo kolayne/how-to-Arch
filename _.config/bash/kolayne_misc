@@ -1,0 +1,29 @@
+#!/bin/echo This file is supposed to be sourced only:
+
+source /etc/profile.d/vte.sh  # Open new tab in the same WD
+
+# ssh-agent, from https://wiki.archlinux.org/title/SSH_keys#SSH_agents
+if [ $(pgrep -u $USER ssh-agent | wc -l) -eq 0 ]; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! $SSH_AUTH_SOCK ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
+source ~/.ghcup/env
+
+# The repo is https://github.com/sio/bash-complete-partial-path
+#source ~/.config/bash/bash-complete-partial-path/bash_completion
+#_bcpp --files --dirs --cooperate --readline
+
+# trash-cli has some weird default completion. This is a workaround
+complete -f trash
+
+# https://github.com/sudofox/shell-mommy.git
+# export SHELL_MOMMYS_LITTLE="kitten"
+# export SHELL_MOMMYS_PRONOUNS="his"
+# export SHELL_MOMMYS_ROLES="keanu reeves"
+# source ~/.config/bash/shell-mommy/shell-mommy.sh
+# UNKEANU_PROMPT="$PROMPT_COMMAND"
+# export PROMPT_COMMAND="mommy \\$\\(exit \$?\\); $PROMPT_COMMAND"
+# unkeanu() { export PROMPT_COMMAND="$UNKEANU_PROMPT"; }

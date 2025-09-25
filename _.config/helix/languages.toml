@@ -1,0 +1,12 @@
+[[language]]
+name = "c"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "cpp"
+indent = { tab-width = 4, unit = "    " }
+file-types = ["cc", "hh", "c++", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", "ixx", "txx", "ino", "C", "H", "cu", "cuh", "cppm", "h++", "ii", "inl", { glob = ".hpp.in" }, { glob = ".h.in" }]
+
+[language-server.rust-analyzer.config]
+cargo.features = "all"
+check = { command = "clippy", extraArgs = "-w" }

@@ -284,24 +284,21 @@ If you have any previous configurations for your software (such as your `Hyprlan
 restore them now. If you don't, you can either skip this step (and only configure things
 later, when you need something), or use someone else's configs as a starting point.
 
-To set up my configuration:
+To set up my configuration, perform the following steps:
 ```sh
-$ git clone https://github.com/kolayne/some_scripts_and_configs.git ssac
+$ git clone https://github.com/kolayne/how-to-Arch.git hta
 < some output >
 $
-$ # Various configs
+$ # Install my configs
 $ mkdir -p ~/.config
-$ cp -r ssac/.config/* ~/.config/
-$ # An additional step to enable my bash config
+$ cp -r hta/_.config/* ~/.config/
+$ # Enable my bash config
 $ # (this OVERWRITES whatever you had in .bashrc at the moment)
 $ echo "source ~/.config/bash/rc" > ~/.bashrc
 $
-$ # Install `pdeath_hup`
+$ # Install `pdeath_hup` (required for my Hyprland config)
 $ mkdir -p ~/.local/bin/
-$ gcc ssac/pdeath_hup.c -o ~/.local/bin/pdeath_hup
-$
-$ # That's it :)
-$ rm -rf ssac
+$ gcc hta/pdeath_hup.c -o ~/.local/bin/pdeath_hup
 ```
 
 **KEEP IN MIND** that my `Hyprland` config contains autostart commands that will be silently skipped
@@ -600,9 +597,10 @@ Launch Thunderbird, go to Settings -> General -> Config editor. Set the
 `toolkit.legacyUserProfileCustomizations.stylesheets` property to `true`.
 
 Close Thunderbird.
-Create file `~/.thunderbird/<profile-name>.default-release/chrome/userChrome.css`
-and put the [customization](https://github.com/kolayne/some_scripts_and_configs/blob/master/.thunderbird/profile-name/chrome/userChrome.css)
-in the file. The directory `chrome/` may not exist.
+Create file `~/.thunderbird/<profile-name>.default-release/chrome/userChrome.css`.
+In it, put the contents of
+[_.thunderbird/profile-name/chrome/userChrome.css](_.thunderbird/profile-name/chrome/userChrome.css)
+from this repository.
 
 ## Configure idleness, suspension, hibernation
 

@@ -1,0 +1,8 @@
+#!/bin/echo This file is supposed to be sourced only:
+
+export EDITOR='vim'
+export VISUAL='vim'
+
+export PATH="$HOME/.local/bin/:$PATH"
+
+export GOPATH="$HOME/.go"

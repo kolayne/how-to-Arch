@@ -1,0 +1,15 @@
+/*
+Place this file at .thunderbird/<profile-name>/chrome/userChrome.css
+
+For it to work with modern Thunderbird, enable the `toolkit.legacyUserProfileCustomizations.stylesheets`
+setting in Settings -> General -> Config Editor.
+*/
+
+/*
+The purpose of this customization is to allow individual events coloring with Categories
+(making Thunderbird calendar interface similar to that of Google Calendar).
+However, it does not make any sense if you might have events with multiple categories assigned.
+*/
+.calendar-category-box {
+    width: 100% !important;
+}

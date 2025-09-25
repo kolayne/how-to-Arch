@@ -1,0 +1,4 @@
+source ~/.config/bash/original.bashrc
+source ~/.config/bash/kolayne_aliases
+source ~/.config/bash/kolayne_env
+source ~/.config/bash/kolayne_misc

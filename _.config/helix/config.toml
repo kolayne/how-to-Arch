@@ -1,0 +1,6 @@
+theme = "bogster"
+#theme = "base16_transparent"
+
+[editor]
+# Activated with Ctrl-x
+auto-completion = false
