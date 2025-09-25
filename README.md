@@ -784,8 +784,6 @@ Otherwise (if you end up with system hibernating but then booting normally rathe
 There are a few more utils that I use, which are not properly packaged (yet?). To install them,
 follow the README instructions.
 
--   Install [linux-cpu-scaling-helper](https://github.com/kolayne/linux-cpu-scaling-helper)
-
 -   Install [docker-on-top](https://github.com/kolayne/docker-on-top)
 
 -   Clone [Rimokon](https://github.com/kolayne/Rimokon) to `~/Docs/Rimokon` and configure it
