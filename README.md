@@ -332,7 +332,8 @@ Install other packages and apps that you will use. My suggestion:
       filesystems)
     - `playerctl` - cli for media control (play/pause, next/prev, etc) <br>
       (keyboard integration can be configured, see the next section)
-    - `yaru-sound-theme` - a sound theme, used to play the log in sound in my i3 config
+    - `linux-a11y-sound-theme` - a sound theme. Provides the success sound for the `alert` command
+      in my fish config
     - `adapta-gtk-theme` - a gtk theme <br>
       (configuration required, see the next section)
 
@@ -405,7 +406,7 @@ To install all of the above, run:
 ```sh
 $ yay -Syu --needed \
       bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
-      pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl yaru-sound-theme \
+      pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl linux-a11y-sound-theme \
       adapta-gtk-theme \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \

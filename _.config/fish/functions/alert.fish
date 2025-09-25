@@ -2,7 +2,7 @@ function alert --description 'Play sound and send notification when the previous
     set -l STATUS "$status"
 
     if test "$STATUS" -eq 0
-        paplay /usr/share/sounds/freedesktop/stereo/complete.oga & disown
+        paplay /usr/share/sounds/linux-a11y/stereo/complete.oga & disown
         notify-send Success (status current-commandline)
     else
         paplay ~/.config/fish/oof.mp3 & disown
