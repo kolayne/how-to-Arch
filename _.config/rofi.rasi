@@ -1,0 +1,8 @@
+configuration {
+	sort: true;
+	sorting-method: "fzf";
+	kb-element-next: "";
+	kb-row-select: "Tab";
+}
+
+@theme "/usr/share/rofi/themes/Monokai.rasi"

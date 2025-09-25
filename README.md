@@ -528,11 +528,13 @@ Tab Shortcuts:
 
 ### `hyprlock` screen lock
 
-TODO
+Hyprlock requires a configuration file to work. If you are using my configs from above,
+you already have it configured. Edit it to your liking at `~/.config/hypr/hyprlock.conf`
 
 ### `hypridle` idleness management
 
-TODO
+Hypridle requires a configuration file to work. If you are using my configs from above,
+you already have it configured. Edit it to your liking at `~/.config/hypr/hypridle.conf`
 
 ### Media player - `mpv`
 
@@ -602,7 +604,7 @@ In it, put the contents of
 [_.thunderbird/profile-name/chrome/userChrome.css](_.thunderbird/profile-name/chrome/userChrome.css)
 from this repository.
 
-## Configure idleness, suspension, hibernation
+## Configure suspension and hibernation
 
 (note: I am no longer using suspend-then-hibernate, since it has been pretty buggy
 over many systemd releases in a row)
@@ -628,8 +630,7 @@ HandleLidSwitch=suspend
 HandleLidSwitchExternalPower=suspend
 HandleLidSwitchDocked=ignore
 #...
-IdleAction=suspend
-IdleActionSec=30min
+IdleAction=ignore
 #...
 ```
 
