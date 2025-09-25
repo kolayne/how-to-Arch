@@ -321,12 +321,6 @@ $ # Install `pdeath_hup`
 $ mkdir -p ~/.local/bin/
 $ gcc ssac/pdeath_hup.c -o ~/.local/bin/pdeath_hup
 $
-$ # Vim config
-$ cp ssac/.vimrc ~/
-$
-$ # Gdb config
-$ cp ssac/.gdbinit ~/
-$
 $ # That's it :)
 $ rm -rf ssac
 ```
@@ -379,6 +373,8 @@ Install other packages and apps that you will use. My suggestion:
     - `light` to control backlight <br>
       (configuration required, see the next section)
     - `htop` - console system monitor
+    - `gdb` - console debugger
+    - `vim` - console text editor
     - `helix` - console text editor
     - `ffmpeg` - video editing utility
     - `rclone` - tool to mount remote clouds (such as Google Drive) into your system
@@ -442,7 +438,7 @@ $ yay -Syu --needed \
       pwvucontrol picom clipster gvfs ruby-fusuma xdotool playerctl feh yaru-sound-theme adapta-gtk-theme \
       numlockx \
         \
-      openssh bluez-utils lsd c-lolcat light htop helix ffmpeg rclone trash-cli autotrash moreutils tldr \
+      openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \
       inetutils dog zip unzip rar rustup \
         \
       dmenu cbatticon redshift xss-lock i3lock-color terminator xterm pcmanfm \
