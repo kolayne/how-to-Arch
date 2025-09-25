@@ -376,9 +376,10 @@ Install other packages and apps that you will use. My suggestion:
     - `eog` (a user-friendly) image viewer
     - `gpicview` (a performant) image viewer (better suit for huge photos)
     - `mpv` media player <br>
-      `mpv-mpris` to enable MPRIS support for mpv <br>
-      `yt-dlp` to enable YouTube support for mpv <br>
-      (configuration suggested, see the next section)
+      `mpv-mpris` for MPRIS (playerctl) support in mpv <br>
+      `yt-dlp` to support opening YouTube links in mpv  <br>
+      (if you are using my config, it just works; otherwise, these extensions
+      for `mpv` need to be configured)
     - `firefox chromium google-chrome` web browsers
     - `thunderbird` - Mozilla Thunderbird mail client
     - `obs-studio` screen recording and streaming software
@@ -536,20 +537,6 @@ you already have it configured. Edit it to your liking at `~/.config/hypr/hyprlo
 Hypridle requires a configuration file to work. If you are using my configs from above,
 you already have it configured. Edit it to your liking at `~/.config/hypr/hypridle.conf`
 
-### Media player - `mpv`
-
-Create `~/.config/mpv/mpv.conf` and paste the following:
-```
-# Youtube Support
-script-opts=ytdl_hook-ytdl_path=/usr/bin/yt-dlp
-ytdl-format=bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best
-
---fs
---save-position-on-quit
---script=/usr/lib/mpv-mpris/mpris.so
---write-filename-in-watch-later-config
-```
-
 ### User dirs
 
 Setup "well known" user direcotries and change the "Documents" directory from the default
@@ -560,19 +547,8 @@ $ xdg-user-dirs-update --set DOCUMENTS "$HOME/Docs"
 
 ### Gtk theme
 
-To configure GTK-3 and GTK-4 apps to use the dark version of the Adapta theme, run:
-```sh
-$ mkdir -p ~/.config/gtk-{3,4}.0
-$ Do not run if you already created your own gtk configs: this will overwrite them!
-$ echo '[Settings]' | tee ~/.config/gtk-{3,4}.0/settings.ini
-$ echo 'gtk-theme-name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
-$ echo 'gtk-icon-theme=name = Adapta' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
-$ echo 'gtk-application-prefer-dark-theme=true' | tee -a ~/.config/gtk-{3,4}.0/settings.ini
-$
-```
-
-Additionally, to prevent some apps (e.g., `gnome-calculator`) from overriding the configured theme,
-install the patched version of `libadwaita`:
+To prevent some apps (e.g., `gnome-calculator`) from overriding the theme configured in
+`.config/gtk-*`, install the patched version of `libadwaita`:
 ```sh
 $ yay -S libadwaita-without-adwaita-git --asdeps
 < confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
