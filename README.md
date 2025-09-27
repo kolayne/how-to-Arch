@@ -100,9 +100,10 @@ $ vim /etc/pacman.conf
 < view and change the configuration >
 ```
 
-Next, initialize the pacman keyring in your new system & install the first set of packages:
+Next, initialize the pacman keyring in your new system & install the first set of packages
+(install `intel-ucode` if you have an Intel CPU and/or `amd-ucode` if you have an AMD CPU):
 ```sh
-$ pacstrap -K /mnt base linux{,-firmware,-headers} intel-ucode networkmanager sudo git fish byobu man-db man-pages vim which
+$ pacstrap -K /mnt base linux{,-firmware,-headers} amd-ucode networkmanager sudo git fish byobu man-db man-pages vim which
 ```
 
 Keep in mind that your changes to `/etc/pacman.conf` in the live mode aren't automatically
