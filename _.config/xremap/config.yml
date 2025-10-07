@@ -1,0 +1,5 @@
+modmap:
+  - name: Numpad keys are regular keys
+    remap:
+      KEY_KP9: KEY_PAGEUP
+      KEY_KP3: KEY_PAGEDOWN

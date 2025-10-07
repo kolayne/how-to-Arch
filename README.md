@@ -337,6 +337,7 @@ Install other packages and apps that you will use. My suggestion:
       in my fish config
     - `adapta-gtk-theme` - a gtk theme <br>
       (configuration required, see the next section)
+    - `xremap-hypr-bin` - a keyboard remapping tool
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
@@ -409,7 +410,7 @@ To install all of the above, run:
 $ yay -Syu --needed \
       bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
       pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl linux-a11y-sound-theme \
-      adapta-gtk-theme \
+      adapta-gtk-theme xremap-hypr-bin \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \
       inetutils dog zip unzip rar rustup jq asciinema \
