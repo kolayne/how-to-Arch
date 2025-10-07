@@ -376,7 +376,8 @@ Install other packages and apps that you will use. My suggestion:
     - `pcmanfm` file manager
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
-    - `flameshot` to make screenshots
+    - `flameshot` to make screenshots <br>
+      `grim` to make screenshots in automated scenarios
     - `xed` text editor
     - `eog` (a user-friendly) image viewer
     - `gpicview` (a performant) image viewer (better suit for huge photos)
@@ -416,7 +417,7 @@ $ yay -Syu --needed \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \
       inetutils dog zip unzip rar rustup jq asciinema \
         \
-      rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot xed eog gpicview \
+      rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
       vk-messenger-bin timeshift baobab \
         \
