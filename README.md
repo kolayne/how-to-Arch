@@ -316,7 +316,7 @@ Configure the rest to your liking by editing `~/.config/hypr/hyprland.conf`!
 
 ## Install more packages that you will need
 
-Install other packages and apps that you will use. My suggestion:
+Install other packages and apps that you will use.
 
 -   System functionality packages
     - `bluez` for bluetooth support
@@ -338,6 +338,7 @@ Install other packages and apps that you will use. My suggestion:
     - `adapta-gtk-theme` - a gtk theme <br>
       (configuration required, see the next section)
     - `xremap-hypr-bin` - a keyboard remapping tool
+    - `xdg-desktop-portal-hyprland` - to support screen sharing/recording under Hyprland
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
@@ -349,7 +350,9 @@ Install other packages and apps that you will use. My suggestion:
     - `htop` - console system monitor
     - `gdb` - console debugger
     - `vim` - console text editor
-    - `helix` - console text editor
+    - `helix` - console text editor <br>
+      `bash-language-server`, `clang`, `gopls`, `rust-analyzer` - language servers for
+      Bash, C/C++, Go, and Rust, respectively.
     - `ffmpeg` - video editing utility
     - `rclone` - tool to mount remote clouds (such as Google Drive) into your system
     - `trash-cli` for the `trash` command (move files/directories to trash)
@@ -412,10 +415,10 @@ To install all of the above, run:
 $ yay -Syu --needed \
       bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
       pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl linux-a11y-sound-theme \
-      adapta-gtk-theme xremap-hypr-bin \
+      adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland \
         \
-      openssh bluez-utils lsd c-lolcat light htop gdb vim helix ffmpeg rclone trash-cli autotrash moreutils tldr \
-      inetutils dog zip unzip rar rustup jq asciinema \
+      openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer ffmpeg rclone \
+      trash-cli autotrash moreutils tldr inetutils dog zip unzip rar rustup jq asciinema \
         \
       rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
