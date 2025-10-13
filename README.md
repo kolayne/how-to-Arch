@@ -519,6 +519,15 @@ xdg-mime default gpicview.desktop image/png
 xdg-mime default pcmanfm.desktop inode/directory
 ```
 
+### Window buttons layout
+
+To show appmenu on the left, hide the minimize button, and show maximize and close
+buttons on the right, run:
+
+```sh
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:maximize,close'
+```
+
 ### Screenshotting - `flameshot`
 
 Run `flameshot`, open its settings from the tray, and configure it as follows:
