@@ -360,6 +360,8 @@ Install other packages and apps that you will use.
       (configuration required, see the next section)
     - `moreutils` many useful tools
     - `tldr` - like `man` but `tldr`
+    - `curl` - network requests utility
+    - `wget` - network file retrieval utility
     - `inetutils` - networking tools, including `telnet`
     - `dog` - the DNS lookup tool
     - `zip`, `unzip`, `rar` - tools for working with archives
@@ -367,6 +369,7 @@ Install other packages and apps that you will use.
       (configuration required, see the next section)
     - `jq` - a command-line json manipulation tool (required by my `Hyprland` config)
     - `asciinema` - a terminal record-and-share utility
+    - `strace` - system calls debugging tool
 
 -   Graphical apps
     - `rofi` app launcher
@@ -418,7 +421,7 @@ $ yay -Syu --needed \
       adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer ffmpeg rclone \
-      trash-cli autotrash moreutils tldr inetutils dog zip unzip rar rustup jq asciinema \
+      trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace \
         \
       rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
