@@ -571,7 +571,7 @@ $ xdg-user-dirs-update --set DOCUMENTS "$HOME/Docs"
 To prevent some apps (e.g., `gnome-calculator`) from overriding the theme configured in
 `.config/gtk-*`, install the patched version of `libadwaita`:
 ```sh
-$ yay -S libadwaita-without-adwaita-git --asdeps
+$ yay -S libadwaita-without-adwaita --asdeps
 < confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
 ```
 
