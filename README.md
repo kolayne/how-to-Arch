@@ -370,6 +370,8 @@ Install other packages and apps that you will use.
     - `jq` - a command-line json manipulation tool (required by my `Hyprland` config)
     - `asciinema` - a terminal record-and-share utility
     - `strace` - system calls debugging tool
+    - `git` - version control system <br>
+      `git-lfs` - for Large File Storage support for git
 
 -   Graphical apps
     - `rofi` app launcher
@@ -421,7 +423,7 @@ $ yay -Syu --needed \
       adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer ffmpeg rclone \
-      trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace \
+      trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
         \
       rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
