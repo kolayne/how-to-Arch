@@ -568,13 +568,19 @@ Setup "well known" user direcotries and change the "Documents" directory from th
 $ xdg-user-dirs-update --set DOCUMENTS "$HOME/Docs"
 ```
 
-### Gtk theme
+### Dark gtk theme
 
 To prevent some apps (e.g., `gnome-calculator`) from overriding the theme configured in
 `.config/gtk-*`, install the patched version of `libadwaita`:
 ```sh
 $ yay -S libadwaita-without-adwaita --asdeps
 < confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
+```
+
+To default to the dark theme, run:
+```sh
+$ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+$ # TODO: in this case, do we still need the ~/.config/gtk-* files?..
 ```
 
 ### Timeshift
