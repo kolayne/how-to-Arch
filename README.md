@@ -577,10 +577,11 @@ $ yay -S libadwaita-without-adwaita --asdeps
 < confirm that due to a conflict `libadwaita` or `libadwaita-1.so` needs to be removed >
 ```
 
-To default to the dark theme, run:
+Some apps (e.g., `google-chrome`) will respect the dark theme requested
+by the `.config/gtk-*` config files. Other apps (e.g., `gnome-system-monitor`)
+respect the `gsettings` config. To set it, run:
 ```sh
 $ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-$ # TODO: in this case, do we still need the ~/.config/gtk-* files?..
 ```
 
 ### Timeshift
