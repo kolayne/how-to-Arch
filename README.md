@@ -640,21 +640,14 @@ IdleAction=ignore
 #...
 ```
 
-Edit `/etc/mkinitcpio.conf` by adding the `resume` option to the `HOOKS=(...)` array, such that
-`resume` is after `udev`, to allow resume from hibernation. For example:
-```
-HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems resume fsck)
-```
-And rebuild the cpio image:
-```sh
-$ sudo mkinitcpio -P
-```
-
-On a modern system (systemd >= 255, mkinitcpio >= 38, UEFI system) this should be sufficient:
-systemd will utilize the `HibernateLocation` EFI variable to keep the location of the hibernated
+Starting with mkinitcpio version 40-1, Arch Linux includes systemd hooks by default, which,
+among other things, enables restoration from hibernation. Thus, no changes to
+`/etc/mkinitcpio.conf` should be necessary in the default case. On a UEFI-based system
+systemd should utilize the `HibernateLocation` EFI variable to keep the location of the hibernated
 image.
 
-Otherwise (if you end up with system hibernating but then booting normally rather than resuming), refer to
+Otherwise, should you have any issues, such as the hibernated system booting normally
+rather than resuming, refer to
 [ArchWiki:Hibernation](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation)
 
 ## Non-packaged utils
