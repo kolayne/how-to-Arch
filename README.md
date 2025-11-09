@@ -385,7 +385,7 @@ Install other packages and apps that you will use.
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
     - `flameshot` to make screenshots <br>
-      `grim` to make screenshots in automated scenarios
+      `grim` for `flameshot` to work on wayland (also provides an CLI for making screenshots)
     - `xed` text editor
     - `eog` (a user-friendly) image viewer
     - `gpicview` (a performant) image viewer (better suit for huge photos)
