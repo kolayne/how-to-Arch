@@ -339,6 +339,7 @@ Install other packages and apps that you will use.
       (configuration required, see the next section)
     - `xremap-hypr-bin` - a keyboard remapping tool
     - `xdg-desktop-portal-hyprland` - to support screen sharing/recording under Hyprland
+    - `valgrind` memory management problem detection tool
 
 -   Command-line tools
     - `openssh` for the `ssh` and `ssh-agent` commands, as well as the `sshd` daemon
@@ -404,6 +405,7 @@ Install other packages and apps that you will use.
     - `timeshift` system backup and restore utility <br>
       (configuration required, see the next section)
     - `baobab` disk space usage analysis utility
+    - `gimp` image editor
 
 -   Drivers
     - `nvidia` for nvidia drivers <br>
@@ -420,14 +422,14 @@ To install all of the above, run:
 $ yay -Syu --needed \
       bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
       pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl linux-a11y-sound-theme \
-      adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland \
+      adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland valgrind \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer ffmpeg rclone \
       trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
         \
       rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
-      vk-messenger-bin timeshift baobab \
+      vk-messenger-bin timeshift baobab gimp \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
