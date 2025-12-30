@@ -306,7 +306,7 @@ $ gcc hta/pdeath_hup.c -o ~/.local/bin/pdeath_hup
 if you don't have the corresponding software installed (we will install it in the following step).
 
 
-If you want, you may enter your graphical environment now. For that, as your user, run `Hyprland`.
+If you want, you may enter your graphical environment now. For that, as your user, run `start-hyprland`.
 You should be able to start graphical interface without rebooting.
 
 Once in the graphical environment, press `Super+Q` (default `Hyprland` config) or `Super+Enter`
