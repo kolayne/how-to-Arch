@@ -326,7 +326,8 @@ Install other packages and apps that you will use.
     - `xdg-user-dirs` for nice "well known" home directories support
     - `pipewire{,-alsa,-audio,-jack,-pulse}` - the `pipewire` media server for audio support, <br>
       `pwvucontrol` - GUI for volume control
-    - `wl-clip-persist` to preserve clipboard content after an app is closed
+    - `wlhangul-git` for hangeul (Korean alphabet) input method <br>
+      (toggled with the `Insert` key in my Hyprland setup)
     - `hypridle` for idle session management in Hyprland <br>
       (configuration required, see the next section)
     - `gvfs` for your file manager to support the `trash:///` location (and some other virtual
@@ -421,7 +422,7 @@ To install all of the above, run:
 ```sh
 $ yay -Syu --needed \
       bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
-      pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wl-clip-persist hypridle gvfs playerctl linux-a11y-sound-theme \
+      pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wlhangul-git hypridle gvfs playerctl linux-a11y-sound-theme \
       adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland valgrind \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer ffmpeg rclone \
