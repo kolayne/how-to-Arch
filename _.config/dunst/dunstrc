@@ -1,0 +1,14 @@
+[global]
+transparency = 30
+frame_color = "#c0caf5"
+background = "#000000"
+font = "Monospace 10"
+
+[urgency_low]
+foreground = "#635d5c"
+
+[urgency_normal]
+foreground = "#c0caf5"
+
+[urgency_critical]
+foreground = "#de3c4b"
