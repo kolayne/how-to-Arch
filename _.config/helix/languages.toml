@@ -9,4 +9,4 @@ file-types = ["cc", "hh", "c++", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", 
 
 [language-server.rust-analyzer.config]
 cargo.features = "all"
-check = { command = "clippy", extraArgs = "-w" }
+check = { command = "clippy" }
