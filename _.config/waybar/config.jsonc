@@ -83,11 +83,13 @@
     "cpu": {
         "format": "{usage}% ",
         "tooltip": true,
-        "on-click": "gnome-system-monitor"
+        "on-click": "gnome-system-monitor -r",
+        "on-click-right": "gnome-system-monitor -p"
     },
     "memory": {
         "format": "{}% ",
-        "on-click": "gnome-system-monitor"
+        "on-click": "gnome-system-monitor -r",
+        "on-click-right": "gnome-system-monitor -p"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -96,7 +98,8 @@
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
-        "on-click": "gnome-system-monitor"
+        "on-click": "gnome-system-monitor -r",
+        "on-click-right": "gnome-system-monitor -p"
     },
     "backlight": {
         // "device": "acpi_video1",
