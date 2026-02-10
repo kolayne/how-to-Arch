@@ -87,7 +87,7 @@
         "on-click-right": "gnome-system-monitor -p"
     },
     "memory": {
-        "format": "{}% ",
+        "format": "{percentage}%+{swapPercentage}% ",
         "on-click": "gnome-system-monitor -r",
         "on-click-right": "gnome-system-monitor -p"
     },
