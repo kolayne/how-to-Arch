@@ -23,7 +23,6 @@
         "memory",
         "temperature",
         "backlight",
-        "keyboard-state",
         "hyprland/language",
         "battery",
         "clock",
@@ -46,15 +45,6 @@
             "focused": "",
             //"default": ""
             "default": ""
-        }
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
         }
     },
     "hyprland/submap": {
