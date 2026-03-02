@@ -37,7 +37,7 @@ if status is-interactive
             echo -n "$(math -s 0 "$millis" % 1000)ms"
         end
 
-        # Carriage return
+        # New line
         echo
     end
 end
