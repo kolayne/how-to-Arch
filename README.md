@@ -92,7 +92,7 @@ $ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ## Install essential packages
 
 First, optionally, make sure that you are satisifed with the automatically generated mirror list
-and the pacman configuration (e.g., uncomment `Color`):
+and the pacman configuration (e.g., uncomment the `Color` option in `/etc/pacman.conf`):
 ```sh
 $ vim /etc/pacman.d/mirrorlist
 < view and change the mirror list. Alternatively, you can run `reflector` to configure mirrors, see the command a few sections below >
