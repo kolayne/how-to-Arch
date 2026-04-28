@@ -1,6 +1,15 @@
-theme = "bogster"
+theme = "ao"
+#theme = "bogster_light"
 #theme = "base16_transparent"
 
 [editor]
 # Activated with Ctrl-x
 auto-completion = false
+line-number = "relative"
+
+[keys.normal]
+# Do not yank what's deleted by default
+# D = "delete_selection"
+# d = "delete_selection_noyank"
+A-c = "change_selection"
+c = "change_selection_noyank"
