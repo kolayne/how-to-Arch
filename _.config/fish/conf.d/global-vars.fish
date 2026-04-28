@@ -11,5 +11,7 @@
 set --export GOPATH "$HOME/.go"
 set --export EDITOR helix
 set --export VISUAL helix
+set --export TERMINAL terminator
 
-fish_add_path --global --prepend $HOME/.local/bin/
+fish_add_path --global --prepend "$HOME/.cargo/bin/"
+fish_add_path --global --prepend "$HOME/.local/bin/"
