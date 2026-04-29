@@ -374,6 +374,7 @@ Install other packages and apps that you will use.
     - `strace` - system calls debugging tool
     - `git` - version control system <br>
       `git-lfs` - for Large File Storage support for git
+    - `cmake`, `meson`, `ninja` - software build systems
 
 -   Graphical apps
     - `rofi` app launcher
@@ -426,7 +427,8 @@ $ yay -Syu --needed \
       adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland valgrind \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer ffmpeg rclone \
-      trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
+      trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs cmake \
+      meson ninja \
         \
       rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
       mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
