@@ -111,8 +111,6 @@ hl.bind(modMain .. modExtra .. "F", hl.dsp.window.fullscreen({ mode = "maximized
 hl.bind(modMain .. modExtra .. "0", hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" }))
 
 -- Launchers
---TODO: Improve shutdown
-hl.bind(modMain .. modShifting .. "E", hl.dsp.exec_cmd("echo -e 'shutdown now\0display\x1fShutdown\nreboot\0display\x1fReboot\nhyprctl dispatch exit\0display\x1fExit Hyprland' | " .. rofi("-dmenu -no-custom") .. "| sh"))
 hl.bind(modMain .. "Return", hl.dsp.exec_raw("terminator"))
 hl.bind(modMain .. modShifting .. "Return", hl.dsp.exec_cmd("foot -f 'Adwaita Mono'", { float = true }))
 hl.bind("ALT + F2", hl.dsp.exec_raw(rofi("-show run")))
@@ -123,3 +121,11 @@ hl.bind("CTRL + Print", hl.dsp.exec_raw("flameshot screen --clipboard"))
 
 -- Lock screen
 hl.bind(modMain .. "L", hl.dsp.exec_raw("loginctl lock-session"))
+
+-- Shutdown menu
+local shutdownLine = "hyprshutdown --no-fork --post-cmd 'shutdown now'\\0display\\x1fShutdown\n"
+local rebootLine   = "hyprshutdown --no-fork --post-cmd 'reboot'\\0display\\x1fReboot\n"
+local exitLine     = "hyprshutdown --no-fork\\0display\\x1fExit Hyprland\\n"
+hl.bind(modMain .. modShifting .. "E", hl.dsp.exec_cmd(
+  "echo -en \"" .. shutdownLine .. rebootLine .. exitLine .. "\" | " .. rofi("-dmenu -no-custom") .. " | sh"
+))

@@ -382,6 +382,7 @@ Install other packages and apps that you will use.
     - `hyprlock` screen lock app <br>
       (configuration required, see the next section)
     - `hyprsunset` blue-light filter (akin to `redshift`)
+    - `hyprshutdown` graceful hyprland shutdown tool
     - `terminator` terminal emulator, <br>
       `foot` - another (simpler) terminal emulator
     - `pcmanfm` file manager
@@ -430,8 +431,8 @@ $ yay -Syu --needed \
       ffmpeg rclone trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
       cmake meson ninja \
         \
-      rofi waybar hyprlock hyprsunset terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog gpicview \
-      mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
+      rofi waybar hyprlock hyprsunset hyprshutdown terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog \
+      gpicview mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
       vk-messenger-bin timeshift baobab gimp \
         \
       nvidia{,-prime} xpadneo-dkms \
