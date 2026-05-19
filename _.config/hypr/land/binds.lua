@@ -60,7 +60,7 @@ hl.bind(modMain .. "W", createGroupOrToggleLock)
 hl.bind(modMain .. modShifting .. "W", hl.dsp.group.toggle())
 
 -- Other window management key bindins
-hl.bind("ALT + F4", hl.dsp.window.kill())
+hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind(modMain .. modShifting .. "B", hl.dsp.window.float())
 local function switchFocusBetweenFloatingAndTiled()
   if hl.get_active_window().floating then
