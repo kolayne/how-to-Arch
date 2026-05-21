@@ -1,4 +1,4 @@
-function rgrep --wraps='grep -Rn' --description 'alias rgrep=grep -Rn'
-  grep -Rn $argv
-        
+function rgrep --wraps='grep -rn' --description 'alias rgrep=grep -Rn'
+    grep -rn $argv
+
 end
