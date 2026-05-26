@@ -109,6 +109,30 @@ hl.window_rule({
   no_anim = true,
 })
 
+hl.window_rule({
+  name = "zoom-annotate-toolbar",
+  match = {
+    class = "zoom",
+    title = "annotate_toolbar",
+  },
+
+  float = true,
+  no_initial_focus = true,
+  size = {60, 60},
+})
+
+-- Float zoom notifications
+hl.window_rule({
+  name = "zoom-zoom",
+  match = {
+    class = "zoom",
+    title = "zoom",
+  },
+
+  float = true,
+  no_initial_focus = true,
+})
+
 -- Chromium-hyprland issue: a window requests to be maximized as soon as it exists fullscreen mode
 hl.window_rule({ match = { class = "(chromium|google-chrome)" },  suppress_event = "maximize" })
 
