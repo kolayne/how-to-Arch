@@ -64,9 +64,9 @@ hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind(modMain .. modShifting .. "B", hl.dsp.window.float())
 local function switchFocusBetweenFloatingAndTiled()
   if hl.get_active_window().floating then
-    hl.dispatch(hl.dsp.focus({ window = "tiled:true" }))
+    hl.dispatch(hl.dsp.focus({ window = "tiled" }))
   else
-    hl.dispatch(hl.dsp.focus({ window = "floating:true" }))
+    hl.dispatch(hl.dsp.focus({ window = "floating" }))
   end
 end
 hl.bind(modMain .. "B", switchFocusBetweenFloatingAndTiled)
@@ -118,6 +118,7 @@ hl.bind(modMain .. "D", hl.dsp.exec_raw(rofi("-show drun -show-icons -drun-show-
 hl.bind(modMain .. "G", hl.dsp.exec_raw("chromium"))
 hl.bind("Print", hl.dsp.exec_raw("flameshot gui"))
 hl.bind("CTRL + Print", hl.dsp.exec_raw("flameshot screen --clipboard"))
+hl.bind("XF86Calculator", hl.dsp.exec_raw("gnome-calculator"))
 
 -- Lock screen
 hl.bind(modMain .. "L", hl.dsp.exec_raw("loginctl lock-session"))
