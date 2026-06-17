@@ -265,9 +265,10 @@ $ makepkg -s -i
 
 ## Set up a graphical environment
 
-Install the `Hyprland` wayland compositor (can also be done with `pacman` instead of `yay`):
+Install the `Hyprland` wayland compositor and `uwsm`, the universal wayland session manager, to launch hyprland
+in harmony with user-level systemd (can also be installed with `pacman` instead of `yay`):
 ```sh
-$ yay -S hyprland
+$ yay -S hyprland uwsm
 ```
 
 Install the most crucial things that you will need in a graphical environment, such as a terminal emulator.
@@ -306,8 +307,10 @@ $ gcc hta/pdeath_hup.c -o ~/.local/bin/pdeath_hup
 if you don't have the corresponding software installed (we will install it in the following step).
 
 
-If you want, you may enter your graphical environment now. For that, as your user, run `start-hyprland`.
-You should be able to start graphical interface without rebooting.
+If you want, you may enter your graphical environment now. For that, as your user (not root!),
+run `uwsm start hyprland-uwsm.desktop`. Whenever you boot next time, you may login in the
+tty and launch hyprland manually like this. Hyprland launch
+[can also be automated](https://wiki.hypr.land/Useful-Utilities/Systemd-start/).
 
 Once in the graphical environment, press `Super+Q` (default `Hyprland` config) or `Super+Enter`
 (my `Hyprland` config) to launch a terminal emulator.
@@ -319,6 +322,8 @@ Configure the rest to your liking by editing `~/.config/hypr/hyprland.conf`!
 Install other packages and apps that you will use.
 
 -   System functionality packages
+    - `hyprland` for graphical environment
+    - `uwsm` for launching hyprland in harmony with user-level systemd
     - `bluez` for bluetooth support
     - `noto-fonts{,-extra,-cjk,-emoji}` for extended font support
     - `otf-font-awesome` for some more emoji fonts, required by `waybar`
@@ -423,7 +428,7 @@ Install other packages and apps that you will use.
 To install all of the above, run:
 ```sh
 $ yay -Syu --needed \
-      bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
+      hyprland uwsm bluez noto-fonts{,-extra,-cjk,-emoji} otf-font-awesome ntfs-3g xdg-user-dirs \
       pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wlhangul-git hypridle gvfs playerctl linux-a11y-sound-theme \
       adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland valgrind \
         \
