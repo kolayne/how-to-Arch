@@ -95,6 +95,14 @@ hl.config({
   }
 })
 
+hl.config({
+  group = {
+    drag_into_group = 2,
+    merge_groups_on_drag = false,
+    merge_groups_on_groupbar = true,
+  }
+})
+
 -- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1} } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1} } })
