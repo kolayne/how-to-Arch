@@ -9,6 +9,10 @@ if status is-interactive
 
     abbr --add inhib systemd-inhibit --what=handle-lid-switch
 
+    bind ctrl-left backward-word
+    bind ctrl-right forward-word
+    bind ctrl-w backward-kill-path-component
+
     function show_run_time --on-event fish_postexec
         if test "$CMD_DURATION" -lt 5000
             return
