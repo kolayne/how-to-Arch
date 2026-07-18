@@ -6,5 +6,5 @@ function yay --wraps yay --description 'Run yay with tweaks'
     #  preventing the termcap initialization/deinitialization strings)
     set --local --export LESS -R
     # Inhibit shutdown and idleness
-    systemd-inhibit --what=shutdown:idle --why="Package installation/removal/upgrade" yay $argv
+    systemd-inhibit --what=shutdown --why="Package installation/removal/upgrade" yay $argv
 end
