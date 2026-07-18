@@ -1,6 +1,6 @@
 hl.config({
   gestures = {
-    workspace_swipe_distance = 390,
+    workspace_swipe_distance = 410,
     workspace_swipe_min_speed_to_force = 10,
     workspace_swipe_cancel_ratio = 0.5,
     workspace_swipe_direction_lock = false,

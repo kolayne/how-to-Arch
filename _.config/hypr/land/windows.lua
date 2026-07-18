@@ -133,8 +133,8 @@ hl.window_rule({
   no_initial_focus = true,
 })
 
--- Chromium-hyprland issue: a window requests to be maximized as soon as it exists fullscreen mode
-hl.window_rule({ match = { class = "(chromium|google-chrome)" },  suppress_event = "maximize" })
+-- Hyprland lies to windows about their maximized state, which causes bugs when they try to change it.
+hl.window_rule({ match = { class = ".*" },  suppress_event = "maximize" })
 
 -- flameshot: be floating to not mess with layout when taking a screenshot
 hl.window_rule({ match = { class = "flameshot" },  float = true })
