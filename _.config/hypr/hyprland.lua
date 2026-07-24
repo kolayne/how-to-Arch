@@ -25,3 +25,5 @@ require('land.autostart')
 require('land.permissions')
 -- Window management config options and rules
 require('land.windows')
+-- Workspaces
+require('land.workspaces')

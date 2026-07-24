@@ -33,18 +33,17 @@
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
-        "format": "{name} {icon}",
+        "format": "{icon}",
         "format-icons": {
             //"1": "",
             //"2": "",
             //"3": "",
             //"4": "",
-            "9": "",
-            "10": "&#119070;",
+            "九": "",
+            "十": "&#119070;",
             "urgent": "",
             "focused": "",
             //"default": ""
-            "default": ""
         }
     },
     "hyprland/submap": {
