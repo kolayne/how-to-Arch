@@ -45,7 +45,14 @@ hl.bind(modMain .. modExtra .. modShifting .. "Down", hl.dsp.window.swap({ direc
 
 -- Special workspace (scratchpad)
 hl.bind(modMain .. "Minus", hl.dsp.workspace.toggle_special("scratch"))
-hl.bind(modMain .. modShifting .. "Minus", hl.dsp.window.move({ workspace = "special:scratch", follow = false }))
+hl.bind(modMain .. modShifting .. "Minus", function()
+  hl.dispatch(hl.dsp.window.float({ action = "on" }))
+  hl.dispatch(hl.dsp.window.move({ workspace = "special:scratch", follow = false }))
+end)
+hl.bind(modMain .. modExtra .. modShifting .. "Minus", function()
+  hl.dispatch(hl.dsp.window.float({ action = "on" }))
+  hl.dispatch(hl.dsp.window.move({ workspace = "special:scratch", follow = true }))
+end)
 
 -- Groups
 local function createGroupOrToggleLock()
