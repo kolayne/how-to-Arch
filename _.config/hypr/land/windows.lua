@@ -140,4 +140,4 @@ hl.window_rule({ match = { class = ".*" },  suppress_event = "maximize" })
 hl.window_rule({ match = { class = "flameshot" },  float = true })
 
 -- Picture in picture: keep aspect ratio
-hl.window_rule({ match = { title = "Picture in picture" },  keep_aspect_ratio = true })
+hl.window_rule({ match = { title = "(Picture in picture|PIP 모드)" }, float = true, pin = true })
