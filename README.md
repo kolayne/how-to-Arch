@@ -389,7 +389,8 @@ Install other packages and apps that you will use.
     - `hyprsunset` blue-light filter (akin to `redshift`)
     - `hyprshutdown` graceful hyprland shutdown tool
     - `terminator` terminal emulator, <br>
-      `foot` - another (simpler) terminal emulator
+      `foot` - another (simpler) terminal emulator, <br>
+      `kitty` - a terminal emulator used in Hyprland integration tests
     - `pcmanfm` file manager
     - `gnome-system-monitor` system monitor / task manager
     - `gnome-calculator` calculator
@@ -410,6 +411,7 @@ Install other packages and apps that you will use.
       `onlyoffice-bin` office software
     - `telegram-desktop` client for the Telegram messenger
     - `vk-messenger-bin` client for the VK messenger
+    - `discord` client for Discord
     - `timeshift` system backup and restore utility <br>
       (configuration required, see the next section)
     - `baobab` disk space usage analysis utility
@@ -436,9 +438,9 @@ $ yay -Syu --needed \
       ffmpeg rclone trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
       cmake meson ninja \
         \
-      rofi waybar hyprlock hyprsunset hyprshutdown terminator foot pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog \
+      rofi waybar hyprlock hyprsunset hyprshutdown terminator foot kitty pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog \
       gpicview mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
-      vk-messenger-bin timeshift baobab gimp \
+      vk-messenger-bin discord timeshift baobab gimp \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
