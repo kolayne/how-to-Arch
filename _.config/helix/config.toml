@@ -8,8 +8,11 @@ auto-completion = false
 line-number = "relative"
 
 [keys.normal]
-# Do not yank what's deleted by default
-# D = "delete_selection"
-# d = "delete_selection_noyank"
+# By default, do not yank when changing
+A-c = "change_selection"
+c = "change_selection_noyank"
+
+[keys.select]
+# By default, do not yank when changing
 A-c = "change_selection"
 c = "change_selection_noyank"
