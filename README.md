@@ -539,11 +539,10 @@ xdg-mime default pcmanfm.desktop inode/directory
 
 ### Window buttons layout
 
-To show appmenu on the left, hide the minimize button, and show maximize and close
-buttons on the right, run:
+To change appmenu to only display the close button (no minimize and maximize), run:
 
 ```sh
-gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:maximize,close'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:close'
 ```
 
 ### Screenshotting - `flameshot`
