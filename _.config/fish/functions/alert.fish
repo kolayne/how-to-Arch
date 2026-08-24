@@ -3,10 +3,10 @@ function alert --description 'Play sound and send notification when the previous
 
     if test "$STATUS" -eq 0
         paplay /usr/share/sounds/linux-a11y/stereo/complete.oga & disown
-        notify-send Success (status current-commandline)
+        notify-send Success "$(status current-commandline)"
     else
         paplay ~/.config/fish/oof.mp3 & disown
-        notify-send Failed (status current-commandline)
+        notify-send Failed "$(status current-commandline)"
     end
 
     return "$STATUS"
