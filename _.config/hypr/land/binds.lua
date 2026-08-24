@@ -43,6 +43,12 @@ hl.bind(modMain .. modExtra .. modShifting .. "Right", hl.dsp.window.swap({ dire
 hl.bind(modMain .. modExtra .. modShifting .. "Up", hl.dsp.window.swap({ direction = "u" }))
 hl.bind(modMain .. modExtra .. modShifting .. "Down", hl.dsp.window.swap({ direction = "d" }))
 
+-- Move workspaces between monitors
+hl.bind(modMain .. modShifting .. "CTRL + Left", hl.dsp.workspace.move({ monitor = "left" }))
+hl.bind(modMain .. modShifting .. "CTRL + Right", hl.dsp.workspace.move({ monitor = "right" }))
+hl.bind(modMain .. modShifting .. "CTRL + Up", hl.dsp.workspace.move({ monitor = "top" }))
+hl.bind(modMain .. modShifting .. "CTRL + Down", hl.dsp.workspace.move({ monitor = "bottom" }))
+
 -- Special workspace (scratchpad)
 hl.bind(modMain .. "Minus", hl.dsp.workspace.toggle_special("scratch"))
 hl.bind(modMain .. modShifting .. "Minus", function()
@@ -137,3 +143,27 @@ local exitLine     = "hyprshutdown --no-fork\\0display\\x1fExit Hyprland\\n"
 hl.bind(modMain .. modShifting .. "E", hl.dsp.exec_cmd(
   "echo -en \"" .. shutdownLine .. rebootLine .. exitLine .. "\" | " .. rofi("-dmenu -no-custom") .. " | sh"
 ))
+
+-- Switching outputs modes
+hl.define_submap("outputs", function()
+  -- TODO: make these binds work for the active output?
+  hl.bind("1", function()
+    hl.monitor({
+      output = "eDP-1",
+      scale = 1,
+    })
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+  hl.bind("3", function()
+    hl.monitor({
+      output = "eDP-1",
+      scale = 1.33,
+    })
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  hl.bind("Escape", hl.dsp.submap("reset"))
+  hl.bind("Return", hl.dsp.submap("reset"))
+  hl.bind(modMain .. "O", hl.dsp.submap("reset"))
+end)
+hl.bind(modMain .. "O", hl.dsp.submap("outputs"))
