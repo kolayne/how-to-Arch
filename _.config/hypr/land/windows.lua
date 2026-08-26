@@ -65,7 +65,7 @@ hl.window_rule({ match = { class = "gnome-system-monitor" },         float = tru
 hl.window_rule({
   name = "thunderbird-calendar-reminders",
   match = {
-    class = "org.mozilla.Thunderbird",
+    class = "eu.betterbird.Betterbird",
     -- Initial title is this:
     title = "(Calendar Reminders|캘린더 알림)",
     -- and not this:
@@ -87,7 +87,7 @@ hl.window_rule({
   -- such as windows displaying calendar event information.
   name = "thunderbird-new-mail",
   match = {
-    class = "org.mozilla.Thunderbird",
+    class = "eu.betterbird.Betterbird",
     title = "^$",
   },
 

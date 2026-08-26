@@ -405,7 +405,7 @@ Install other packages and apps that you will use.
       (if you are using my config, it just works; otherwise, these extensions
       for `mpv` need to be configured)
     - `firefox chromium google-chrome` web browsers
-    - `thunderbird` - Mozilla Thunderbird mail client
+    - `betterbird-bin` - the betterbird email client, a soft fork of Mozilla Thunderbird
     - `obs-studio` screen recording and streaming software
     - `wps-office-bin` office software, <br>
       `onlyoffice-bin` office software
@@ -439,7 +439,7 @@ $ yay -Syu --needed \
       cmake meson ninja \
         \
       rofi waybar hyprlock hyprsunset hyprshutdown terminator foot kitty pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog \
-      gpicview mpv{,-mpris} yt-dlp firefox chromium google-chrome thunderbird obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
+      gpicview mpv{,-mpris} yt-dlp firefox chromium google-chrome betterbird-bin obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
       vk-messenger-bin discord timeshift baobab gimp \
         \
       nvidia{,-prime} xpadneo-dkms \
@@ -607,7 +607,9 @@ $ sudo systemctl enable --now cronie.service
 $ subo timeshift-gtk
 ```
 
-## Thunderbird
+## Betterbird / Thunderbird
+
+### Calendar events coloring
 
 The following customization for Thunderbird allows individual events coloring
 (similar to Google Calendar) with Thunderbird categories. However, it will
@@ -621,6 +623,13 @@ Create file `~/.thunderbird/<profile-name>.default-release/chrome/userChrome.css
 In it, put the contents of
 [_.thunderbird/profile-name/chrome/userChrome.css](_.thunderbird/profile-name/chrome/userChrome.css)
 from this repository.
+
+### Supporting minimize-to-tray / close-to-tray
+
+After the minimize-to-tray / close-to-tray feature of betterbird is enabled in the settings UI,
+one should also convince betterbird that this feature is supported on Hyprland.
+Open Settings -> General -> Config Editor and search for key `mail.minimizeToTray.supportedDesktops`.
+Add `hyprland` to the comma-separated list.
 
 ## Configure suspension and hibernation
 
