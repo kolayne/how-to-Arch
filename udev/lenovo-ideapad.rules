@@ -1,0 +1,10 @@
+# Prevents charger connection/disconnection and lid closure from waking the system up.
+# Lid opening still wakes the system up.
+#
+# Identified this experimentally.
+# The device in question is:
+# /sys/devices/platform/i8042/serio0/
+# aka:
+# /sys/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:2c/FUJ7401:00/physical_node1
+# Obtained the properties via `udevadm info -q all -a /sys/devices/platform/i8042/serio0/`.
+ACTION=="add", SUBSYSTEM=="serio", ATTR{description}=="i8042 KBD port", ATTR{firmware_id}=="PNP: FUJ7401 PNP0303", ATTR{id/id}=="00", ATTR{id/proto}=="00", ATTR{id/type}=="06", ATTR{id/extra}=="00", ATTR{power/wakeup}="disabled"

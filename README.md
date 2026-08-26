@@ -671,3 +671,9 @@ follow the README instructions.
 
 -   Clone [Rimokon](https://github.com/kolayne/Rimokon) to `~/Docs/Rimokon` and configure it.
     With my `Hyprland` config it will be started on log in automatically
+
+## Apply machine-specific hardware-specific udev rules
+
+The udev/ directory contains udev rules (`/etc/udev/rules.d/`) that are used on my machine(s).
+Unless you are using a device of the same model, these rules might have no effect on your system.
+See comments in the rules files for details.
