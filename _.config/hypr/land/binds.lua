@@ -83,7 +83,7 @@ local function switchFocusBetweenFloatingAndTiled()
   end
 end
 hl.bind(modMain .. "B", switchFocusBetweenFloatingAndTiled)
---hl.bind(modMain .. "P", hl.dsp.window.pseudo())
+hl.bind(modMain .. "P", hl.dsp.window.pin({ action = "toggle" }))
 hl.bind(modMain .. "E", hl.dsp.layout("togglesplit"))  -- dwindle: toggle split direction
 
 -- Resize window via keyboard
