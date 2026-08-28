@@ -73,6 +73,7 @@ hl.bind("switch:off:Lid Switch", function()
   hl.monitor({
     output = BuiltinOutput,
     disabled = false,
+    scale = 1,
   })
 end)
 
@@ -81,7 +82,6 @@ hl.bind("switch:on:Lid Switch", function()
     hl.monitor({
       output = BuiltinOutput,
       disabled = true,
-      scale = 1,
     })
   end
 end)
