@@ -1,6 +1,6 @@
-local modMain = "SUPER + "
-local modExtra = "ALT + "
-local modShifting = "SHIFT + "
+ModMain = "SUPER + "
+ModExtra = "ALT + "
+ModShifting = "SHIFT + "
 
 --- Combines default rofi arguments with supplied
 ---@param args string Arguments to `rofi`
@@ -10,52 +10,52 @@ local function rofi(args)
 end
 
 -- Workspaces
-hl.bind(modMain .. "Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(ModMain .. "Tab", hl.dsp.focus({ workspace = "previous" }))
 for i = 1, 10 do
   local key = i % 10
-  hl.bind(modMain .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(modMain .. modShifting .. key, hl.dsp.window.move({ workspace = i, follow = false }))
-  hl.bind(modMain .. modExtra .. modShifting .. key, hl.dsp.window.move({ workspace = i, follow = true }))
+  hl.bind(ModMain .. key, hl.dsp.focus({ workspace = i }))
+  hl.bind(ModMain .. ModShifting .. key, hl.dsp.window.move({ workspace = i, follow = false }))
+  hl.bind(ModMain .. ModExtra .. ModShifting .. key, hl.dsp.window.move({ workspace = i, follow = true }))
 end
 
 -- For window focusing/moving functions (`FocusLeftWindow`, `MoveWindowLeft`, etc)
 require('land.common')
 
 -- Move focus: normal
-hl.bind(modMain .. "Left", FocusLeftWindow)
-hl.bind(modMain .. "Right", FocusRightWindow)
-hl.bind(modMain .. "Up", FocusTopWindow)
-hl.bind(modMain .. "Down", FocusBottomWindow)
+hl.bind(ModMain .. "Left", FocusLeftWindow)
+hl.bind(ModMain .. "Right", FocusRightWindow)
+hl.bind(ModMain .. "Up", FocusTopWindow)
+hl.bind(ModMain .. "Down", FocusBottomWindow)
 
 -- Move focus: jump over groups
-hl.bind(modMain .. modExtra .. "Left", hl.dsp.focus({ direction = "l" }))
-hl.bind(modMain .. modExtra .. "Right", hl.dsp.focus({ direction = "r" }))
+hl.bind(ModMain .. ModExtra .. "Left", hl.dsp.focus({ direction = "l" }))
+hl.bind(ModMain .. ModExtra .. "Right", hl.dsp.focus({ direction = "r" }))
 
 -- Move window in direction
-hl.bind(modMain .. modShifting .. "Left", MoveWindowLeft)
-hl.bind(modMain .. modShifting .. "Right", MoveWindowRight)
-hl.bind(modMain .. modShifting .. "Up", hl.dsp.window.move({ direction = "u", group_aware = true }))
-hl.bind(modMain .. modShifting .. "Down", hl.dsp.window.move({ direction = "d", group_aware = true }))
+hl.bind(ModMain .. ModShifting .. "Left", MoveWindowLeft)
+hl.bind(ModMain .. ModShifting .. "Right", MoveWindowRight)
+hl.bind(ModMain .. ModShifting .. "Up", hl.dsp.window.move({ direction = "u", group_aware = true }))
+hl.bind(ModMain .. ModShifting .. "Down", hl.dsp.window.move({ direction = "d", group_aware = true }))
 
 -- Swap windows
-hl.bind(modMain .. modExtra .. modShifting .. "Left", hl.dsp.window.swap({ direction = "l" }))
-hl.bind(modMain .. modExtra .. modShifting .. "Right", hl.dsp.window.swap({ direction = "r" }))
-hl.bind(modMain .. modExtra .. modShifting .. "Up", hl.dsp.window.swap({ direction = "u" }))
-hl.bind(modMain .. modExtra .. modShifting .. "Down", hl.dsp.window.swap({ direction = "d" }))
+hl.bind(ModMain .. ModExtra .. ModShifting .. "Left", hl.dsp.window.swap({ direction = "l" }))
+hl.bind(ModMain .. ModExtra .. ModShifting .. "Right", hl.dsp.window.swap({ direction = "r" }))
+hl.bind(ModMain .. ModExtra .. ModShifting .. "Up", hl.dsp.window.swap({ direction = "u" }))
+hl.bind(ModMain .. ModExtra .. ModShifting .. "Down", hl.dsp.window.swap({ direction = "d" }))
 
 -- Move workspaces between monitors
-hl.bind(modMain .. modShifting .. "CTRL + Left", hl.dsp.workspace.move({ monitor = "left" }))
-hl.bind(modMain .. modShifting .. "CTRL + Right", hl.dsp.workspace.move({ monitor = "right" }))
-hl.bind(modMain .. modShifting .. "CTRL + Up", hl.dsp.workspace.move({ monitor = "top" }))
-hl.bind(modMain .. modShifting .. "CTRL + Down", hl.dsp.workspace.move({ monitor = "bottom" }))
+hl.bind(ModMain .. ModShifting .. "CTRL + Left", hl.dsp.workspace.move({ monitor = "left" }))
+hl.bind(ModMain .. ModShifting .. "CTRL + Right", hl.dsp.workspace.move({ monitor = "right" }))
+hl.bind(ModMain .. ModShifting .. "CTRL + Up", hl.dsp.workspace.move({ monitor = "top" }))
+hl.bind(ModMain .. ModShifting .. "CTRL + Down", hl.dsp.workspace.move({ monitor = "bottom" }))
 
 -- Special workspace (scratchpad)
-hl.bind(modMain .. "Minus", hl.dsp.workspace.toggle_special("scratch"))
-hl.bind(modMain .. modShifting .. "Minus", function()
+hl.bind(ModMain .. "Minus", hl.dsp.workspace.toggle_special("scratch"))
+hl.bind(ModMain .. ModShifting .. "Minus", function()
   hl.dispatch(hl.dsp.window.float({ action = "on" }))
   hl.dispatch(hl.dsp.window.move({ workspace = "special:scratch", follow = false }))
 end)
-hl.bind(modMain .. modExtra .. modShifting .. "Minus", function()
+hl.bind(ModMain .. ModExtra .. ModShifting .. "Minus", function()
   hl.dispatch(hl.dsp.window.float({ action = "on" }))
   hl.dispatch(hl.dsp.window.move({ workspace = "special:scratch", follow = true }))
 end)
@@ -69,12 +69,12 @@ local function createGroupOrToggleLock()
     hl.dispatch(hl.dsp.group.lock_active({ action = "toggle" }))
   end
 end
-hl.bind(modMain .. "W", createGroupOrToggleLock)
-hl.bind(modMain .. modShifting .. "W", hl.dsp.group.toggle())
+hl.bind(ModMain .. "W", createGroupOrToggleLock)
+hl.bind(ModMain .. ModShifting .. "W", hl.dsp.group.toggle())
 
 -- Other window management key bindins
 hl.bind("ALT + F4", hl.dsp.window.close())
-hl.bind(modMain .. modShifting .. "B", hl.dsp.window.float())
+hl.bind(ModMain .. ModShifting .. "B", hl.dsp.window.float())
 local function switchFocusBetweenFloatingAndTiled()
   if hl.get_active_window().floating then
     hl.dispatch(hl.dsp.focus({ window = "tiled" }))
@@ -82,9 +82,9 @@ local function switchFocusBetweenFloatingAndTiled()
     hl.dispatch(hl.dsp.focus({ window = "floating" }))
   end
 end
-hl.bind(modMain .. "B", switchFocusBetweenFloatingAndTiled)
-hl.bind(modMain .. "P", hl.dsp.window.pin({ action = "toggle" }))
-hl.bind(modMain .. "E", hl.dsp.layout("togglesplit"))  -- dwindle: toggle split direction
+hl.bind(ModMain .. "B", switchFocusBetweenFloatingAndTiled)
+hl.bind(ModMain .. "P", hl.dsp.window.pin({ action = "toggle" }))
+hl.bind(ModMain .. "E", hl.dsp.layout("togglesplit"))  -- dwindle: toggle split direction
 
 -- Resize window via keyboard
 hl.define_submap("resize", function()
@@ -94,13 +94,13 @@ hl.define_submap("resize", function()
   hl.bind("Down", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
   hl.bind("Escape", hl.dsp.submap("reset"))
   hl.bind("Return", hl.dsp.submap("reset"))
-  hl.bind(modMain .. "R", hl.dsp.submap("reset"))
+  hl.bind(ModMain .. "R", hl.dsp.submap("reset"))
 end)
-hl.bind(modMain .. "R", hl.dsp.submap("resize"))
+hl.bind(ModMain .. "R", hl.dsp.submap("resize"))
 
 -- Move/resize window with modMain + LMB/RMB and dragging
-hl.bind(modMain .. "mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(modMain .. "mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(ModMain .. "mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(ModMain .. "mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Volume and brightness keys
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_raw("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
@@ -118,52 +118,29 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_raw("playerctl play-pause"), { locked = tru
 
 -- Fullscreenness management
 hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
-hl.bind(modExtra .. "F11", hl.dsp.send_shortcut({ mods = "", key = "F11" }))
-hl.bind(modMain .. "F", hl.dsp.window.fullscreen_state({ internal = 2, client = -1, action = "toggle" }))
-hl.bind(modMain .. modExtra .. "F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
-hl.bind(modMain .. modExtra .. "0", hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" }))
+hl.bind(ModExtra .. "F11", hl.dsp.send_shortcut({ mods = "", key = "F11" }))
+hl.bind(ModMain .. "F", hl.dsp.window.fullscreen_state({ internal = 2, client = -1, action = "toggle" }))
+hl.bind(ModMain .. ModExtra .. "F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
+hl.bind(ModMain .. ModExtra .. "0", hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" }))
 
 -- Launchers
-hl.bind(modMain .. "Return", hl.dsp.exec_raw("terminator"))
-hl.bind(modMain .. modShifting .. "Return", hl.dsp.exec_cmd("foot -f 'Adwaita Mono'", { float = true }))
+hl.bind(ModMain .. "Return", hl.dsp.exec_raw("terminator"))
+hl.bind(ModMain .. ModShifting .. "Return", hl.dsp.exec_cmd("foot -f 'Adwaita Mono'", { float = true }))
 hl.bind("ALT + F2", hl.dsp.exec_raw(rofi("-show run")))
-hl.bind(modMain .. "D", hl.dsp.exec_raw(rofi("-show drun -show-icons -drun-show-actions")))
-hl.bind(modMain .. "G", hl.dsp.exec_raw("chromium"))
+hl.bind(ModMain .. "D", hl.dsp.exec_raw(rofi("-show drun -show-icons -drun-show-actions")))
+hl.bind(ModMain .. "G", hl.dsp.exec_raw("chromium"))
 hl.bind("Print", hl.dsp.exec_raw("flameshot gui"))
 hl.bind("CTRL + Print", hl.dsp.exec_raw("flameshot screen --clipboard"))
 hl.bind("XF86Calculator", hl.dsp.exec_raw("gnome-calculator"))
 
 -- Lock screen
-hl.bind(modMain .. "L", hl.dsp.exec_raw("loginctl lock-session"))
+hl.bind(ModMain .. "L", hl.dsp.exec_raw("loginctl lock-session"))
 
 -- Shutdown menu
 local shutdownLine = "hyprshutdown --no-fork --post-cmd 'shutdown now'\\0display\\x1fShutdown\n"
 local rebootLine   = "hyprshutdown --no-fork --post-cmd 'reboot'\\0display\\x1fReboot\n"
 local exitLine     = "hyprshutdown --no-fork\\0display\\x1fExit Hyprland\\n"
-hl.bind(modMain .. modShifting .. "E", hl.dsp.exec_cmd(
+hl.bind(ModMain .. ModShifting .. "E", hl.dsp.exec_cmd(
   "echo -en \"" .. shutdownLine .. rebootLine .. exitLine .. "\" | " .. rofi("-dmenu -no-custom") .. " | sh"
 ))
 
--- Switching outputs modes
-hl.define_submap("outputs", function()
-  -- TODO: make these binds work for the active output?
-  hl.bind("1", function()
-    hl.monitor({
-      output = "eDP-1",
-      scale = 1,
-    })
-    hl.dispatch(hl.dsp.submap("reset"))
-  end)
-  hl.bind("3", function()
-    hl.monitor({
-      output = "eDP-1",
-      scale = 1.33,
-    })
-    hl.dispatch(hl.dsp.submap("reset"))
-  end)
-
-  hl.bind("Escape", hl.dsp.submap("reset"))
-  hl.bind("Return", hl.dsp.submap("reset"))
-  hl.bind(modMain .. "O", hl.dsp.submap("reset"))
-end)
-hl.bind(modMain .. "O", hl.dsp.submap("outputs"))

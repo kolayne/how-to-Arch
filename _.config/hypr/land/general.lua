@@ -4,13 +4,6 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- For `BorderSize`
 require('land.common')
 
--- hl.monitor({
---   output = "eDP-1",
---   mirror = "HDMI-A-1",
---   mode = "preferred",
---   position = "auto",
--- })
-
 hl.config({
   general = {
     gaps_in = 3,
