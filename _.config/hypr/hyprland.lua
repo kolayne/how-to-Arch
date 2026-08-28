@@ -27,3 +27,5 @@ require('land.permissions')
 require('land.windows')
 -- Workspaces
 require('land.workspaces')
+-- Multi-monitor
+require('land.multimon')

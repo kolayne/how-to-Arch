@@ -144,3 +144,4 @@ hl.bind(ModMain .. ModShifting .. "E", hl.dsp.exec_cmd(
   "echo -en \"" .. shutdownLine .. rebootLine .. exitLine .. "\" | " .. rofi("-dmenu -no-custom") .. " | sh"
 ))
 
+hl.bind(ModMain .. ModShifting .. "R", hl.dsp.exec_raw("hyprctl reload"))

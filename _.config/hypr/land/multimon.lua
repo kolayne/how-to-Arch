@@ -1,14 +1,14 @@
 require 'land.binds'
 
-local builtin_output <const> = "eDP-1"
+BuiltinOutput = "eDP-1"
 
 -- Which output to set with the following keybind
-local control_output = builtin_output
+local control_output = BuiltinOutput
 
 -- Switching outputs modes
 local function outputsSubmap()
   hl.bind("Equal", function()
-    control_output = builtin_output
+    control_output = BuiltinOutput
   end)
 
   -- Scale 1
@@ -31,7 +31,7 @@ local function outputsSubmap()
   -- Lab mode
   hl.bind("l", function()
     hl.monitor({
-      output = builtin_output,
+      output = BuiltinOutput,
       scale = 1.33,
       position = "1920x700",
     })
@@ -42,7 +42,7 @@ local function outputsSubmap()
   hl.bind("m", function()
     hl.monitor({
       output = "",
-      mirror = builtin_output,
+      mirror = BuiltinOutput,
     })
     hl.dispatch(hl.dsp.submap("reset"))
   end)
@@ -71,7 +71,7 @@ hl.bind(ModMain .. "O", hl.dsp.submap("outputs"))
 
 hl.bind("switch:off:Lid Switch", function()
   hl.monitor({
-    output = builtin_output,
+    output = BuiltinOutput,
     disabled = false,
   })
 end)
@@ -79,7 +79,7 @@ end)
 hl.bind("switch:on:Lid Switch", function()
   if #hl.get_monitors() > 1 then
     hl.monitor({
-      output = builtin_output,
+      output = BuiltinOutput,
       disabled = true,
       scale = 1,
     })
