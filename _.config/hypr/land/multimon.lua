@@ -31,15 +31,25 @@ local function outputsSubmap()
   -- Lab mode
   hl.bind("l", function()
     hl.monitor({
+      output = "",
+      scale = 1,
+      position = "auto-left",
+    })
+    hl.monitor({
       output = BuiltinOutput,
       scale = 1.33,
-      position = "1920x700",
+      position = "0x700",
     })
     hl.dispatch(hl.dsp.submap("reset"))
   end)
 
   -- Mirror built-in output by default
   hl.bind("m", function()
+    hl.monitor({
+      output = BuiltinOutput,
+      scale = 1,
+      mode = "1920x1080",
+    })
     hl.monitor({
       output = "",
       mirror = BuiltinOutput,
