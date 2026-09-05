@@ -416,6 +416,7 @@ Install other packages and apps that you will use.
       (configuration required, see the next section)
     - `baobab` disk space usage analysis utility
     - `gimp` image editor
+    - `qbittorrent` torrent client
 
 -   Drivers
     - `nvidia` for nvidia drivers <br>
@@ -440,7 +441,7 @@ $ yay -Syu --needed \
         \
       rofi waybar hyprlock hyprsunset hyprshutdown terminator foot kitty pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog \
       gpicview mpv{,-mpris} yt-dlp firefox chromium google-chrome betterbird-bin obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
-      vk-messenger-bin discord timeshift baobab gimp \
+      vk-messenger-bin discord timeshift baobab gimp qbittorrent \
         \
       nvidia{,-prime} xpadneo-dkms \
         \
