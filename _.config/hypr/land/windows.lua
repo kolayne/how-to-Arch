@@ -51,7 +51,7 @@ hl.window_rule({
 -- Chromium(-based) task manager windows (by title)
 hl.window_rule({
   name = "chromium-task-manager",
-  match = { title = "Task Manager - (Brave|Google Chrome|Chromium|Yandex Browser)" },
+  match = { title = "(Task Manager|작업 관리자) - (Brave|Google Chrome|Chromium|Yandex Browser)" },
 
   float = true,
   persistent_size = true,
