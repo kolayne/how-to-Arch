@@ -30,11 +30,13 @@ local function outputsSubmap()
 
   -- Lab mode
   hl.bind("l", function()
-    hl.monitor({
-      output = "",
-      scale = 1,
-      position = "auto-left",
-    })
+    for _, monitor in ipairs(hl.get_monitors()) do
+      hl.monitor({
+        output = monitor.name,
+        scale = 1,
+        position = "auto-left",
+      })
+    end
     hl.monitor({
       output = BuiltinOutput,
       scale = 1.33,
