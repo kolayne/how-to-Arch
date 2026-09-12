@@ -380,6 +380,7 @@ Install other packages and apps that you will use.
     - `git` - version control system <br>
       `git-lfs` - for Large File Storage support for git
     - `cmake`, `meson`, `ninja` - software build systems
+    - `sshfs` - a FUSE driver to mount remote filesystems over ssh
 
 -   Graphical apps
     - `rofi` app launcher
@@ -437,7 +438,7 @@ $ yay -Syu --needed \
         \
       openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer lua-language-server \
       ffmpeg rclone trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
-      cmake meson ninja \
+      cmake meson ninja sshfs \
         \
       rofi waybar hyprlock hyprsunset hyprshutdown terminator foot kitty pcmanfm gnome-{system-monitor,calculator} flameshot grim xed eog \
       gpicview mpv{,-mpris} yt-dlp firefox chromium google-chrome betterbird-bin obs-studio wps-office-bin onlyoffice-bin telegram-desktop \
