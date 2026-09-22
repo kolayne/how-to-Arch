@@ -358,8 +358,8 @@ Install other packages and apps that you will use.
     - `gdb` - console debugger
     - `vim` - console text editor
     - `helix` - console text editor <br>
-      `bash-language-server`, `clang`, `gopls`, `rust-analyzer`, `lua-language-server` -
-      language servers for Bash, C/C++, Go, and Rust, respectively.
+      `bash-language-server`, `clang`, `gopls`, `rust-analyzer`, `lua-language-server`, `ruff` -
+      language servers for Bash, C/C++, Go, Rust, Lua, and Python, respectively.
     - `ffmpeg` - video editing utility
     - `rclone` - tool to mount remote clouds (such as Google Drive) into your system
     - `trash-cli` for the `trash` command (move files/directories to trash)
@@ -436,7 +436,7 @@ $ yay -Syu --needed \
       pipewire{,-alsa,-audio,-jack,-pulse} pwvucontrol wlhangul-git hypridle gvfs playerctl linux-a11y-sound-theme \
       adapta-gtk-theme xremap-hypr-bin xdg-desktop-portal-hyprland valgrind \
         \
-      openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer lua-language-server \
+      openssh bluez-utils lsd c-lolcat light htop gdb vim helix bash-language-server clang gopls rust-analyzer lua-language-server ruff \
       ffmpeg rclone trash-cli autotrash moreutils tldr curl wget inetutils dog zip unzip rar rustup jq asciinema strace git git-lfs \
       cmake meson ninja sshfs \
         \
